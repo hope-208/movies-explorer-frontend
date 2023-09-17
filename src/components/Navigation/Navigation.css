@@ -1,0 +1,79 @@
+.nav{
+    display: flex;
+    width: 100%;    
+    box-sizing: border-box;
+    
+}
+.nav__list{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+.nav__container {
+    display: flex;
+    flex-direction: row;    
+    align-items: center;
+    box-sizing: border-box;
+}
+.nav__item{
+
+}
+.nav__link{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    align-self: center;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: right;
+    font-size: 13px;
+    line-height: 18px;
+    cursor: pointer;
+}
+.nav__link-in{
+    padding: 8px 20px;
+    border-radius: 3px;
+    background: #3DDC84;
+    color: #000;
+}
+.nav__link_account{
+    display: flex;
+    align-items: center;
+    border-radius: 40px;
+    background: #073042;
+    gap: 7px;
+    padding: 3px;
+}
+.nav__link_text{
+    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    padding-left: 8px;
+    font-weight: 500;
+}
+.nav__link_icon{
+    max-width: 26px;
+    max-height: 26px;
+    margin: 0;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.after-auth {
+    gap: 16px;
+}
+
+.before-auth {
+    gap: 30px;
+    font-weight: 500;
+    margin-left: auto;
+}

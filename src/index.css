@@ -1,0 +1,43 @@
+/*@import url(./fonts/font.css);*/
+
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: #202020;
+}
+
+.page {
+  display: block;  
+  width: 100%;
+  margin: 0 auto;  
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+  text-rendering: optimizeLegibility;
+}
+
+.section{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.section__title{
+  max-width: 1140px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin-block: 0;
+  margin-inline: 0;
+  padding-bottom: 23px;  
+  border-bottom: 1px solid #DADADA;
+  color: #FFF;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: -0.88px;
+}

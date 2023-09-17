@@ -1,0 +1,38 @@
+.header{
+    display: flex;
+    width: 100%;
+    margin: 0;  
+    padding: 0;
+    box-sizing: border-box;
+    background: #073042;  
+    color: #fff;
+    font-size: 13px;
+    line-height: 18px;
+
+}
+.header__container {
+    display: flex;
+    max-width: 1140px;
+    width: 100%;
+    margin: 18px auto;
+    padding: 0;
+    justify-content: space-between;  
+    box-sizing: border-box;
+}
+.header__link{
+    display: flex;
+    margin: 0;
+    margin-right: 50px;
+    padding: 0;
+    text-decoration: none;
+    align-self: center;
+    box-sizing: border-box;    
+    cursor: pointer;
+}
+.header__logo{
+    max-width: 38px;
+    max-height: 38px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
