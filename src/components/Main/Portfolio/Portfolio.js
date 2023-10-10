@@ -1,6 +1,6 @@
 import React from 'react';
 import './Portfolio.css';
-import { Link } from 'react-router-dom';
+import { MY_STATIC_WEBSITE, MY_ADAPYIVE_WEBSITE, MY_SPA_WEBSITE } from '../../../utils/utils.js';
 
 function Portfolio() {
     return (
@@ -8,13 +8,13 @@ function Portfolio() {
             <h3 className="portfolio__title">Портфолио</h3>
             <ul className="portfolio__list">
                 <li className="portfolio__item">
-                    <Link className="portfolio__link" to="">Статичный сайт</Link>
+                    <a className="portfolio__link" href={MY_STATIC_WEBSITE} target="_blank" rel="noopener noreferrer">Статичный сайт</a>
                 </li>
                 <li className="portfolio__item portfolio__item-middle">
-                    <Link className="portfolio__link" to="">Адаптивный сайт</Link>
+                    <a className="portfolio__link" href={MY_ADAPYIVE_WEBSITE} target="_blank" rel="noopener noreferrer">Адаптивный сайт</a>
                 </li>
                 <li className="portfolio__item">
-                    <Link className="portfolio__link" to="">Одностраничное приложение</Link>
+                    <a className="portfolio__link" href={MY_SPA_WEBSITE} target="_blank" rel="noopener noreferrer">Одностраничное приложение</a>
                 </li>
             </ul>
         </section>

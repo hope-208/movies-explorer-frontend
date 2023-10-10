@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import { Link } from 'react-router-dom';
+import { WEBSITE_OF_YA_PRACTICUM, REPOSITORY_OF_THIS_WEBSITE } from '../../utils/utils.js';
 
 function Footer() {
     return (
@@ -10,10 +10,10 @@ function Footer() {
                 <p className="footer__copyright">© 2023</p>
                 <ul className="footer__list">
                     <li className="footer__item">
-                        <Link className="footer__link" to="https://practicum.yandex.ru">Яндекс.Практикум</Link>
+                        <a className="footer__link" href={WEBSITE_OF_YA_PRACTICUM} target="_blank" rel="noopener noreferrer">Яндекс.Практикум</a>
                     </li>
                     <li className="footer__item">
-                        <Link className="footer__link" to="https://github.com/hope-208/movies-explorer-frontend">Github</Link>
+                        <a className="footer__link" href={REPOSITORY_OF_THIS_WEBSITE} target="_blank" rel="noopener noreferrer">Github</a>
                     </li>
                 </ul>
             </div>

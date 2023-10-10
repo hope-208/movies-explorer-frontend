@@ -1,4 +1,4 @@
-.nav-tab{
+.nav-tab {
     display: flex;
     width: 100%;    
     margin: 0;
@@ -6,7 +6,8 @@
     box-sizing: border-box;    
     background: #272727;
 }
-.nav-tab__list{
+
+.nav-tab__list {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -20,10 +21,8 @@
     align-items: center;
     box-sizing: border-box;
 }
-.nav-tab__item{
 
-}
-.nav-tab__link{
+.nav-tab__link {
     display: flex;
     margin: 0;
     padding: 0;
@@ -36,4 +35,19 @@
     line-height: 16px; /* 123.077% */
     text-decoration-line: underline;
     cursor: pointer;
+}
+
+.nav-tab__link:hover,
+.nav-tab__link:focus {
+    opacity: .7;
+}
+
+@media (max-width: 767px) {
+    .nav-tab__list {
+        gap: 24px;
+    }
+
+    .nav-tab__link {
+        font-size: 11px;
+    }
 }

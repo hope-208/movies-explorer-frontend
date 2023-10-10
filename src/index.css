@@ -1,4 +1,5 @@
-/*@import url(./fonts/font.css);*/
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/font.css);
 
 .body {
   margin: 0;
@@ -19,15 +20,18 @@
   text-rendering: optimizeLegibility;
 }
 
-.section{
+.section {
   display: flex;
   width: 100%;
+  margin: 0 auto;
+  padding: 110px 0;  
   flex-direction: column;
   align-items: center;
+  color: #FFF;
   box-sizing: border-box;
 }
 
-.section__title{
+.section__title {
   max-width: 1140px;
   width: 100%;
   margin: 0;
@@ -39,5 +43,23 @@
   color: #FFF;
   font-size: 22px;
   font-weight: 400;
-  letter-spacing: -0.88px;
+  letter-spacing: -.88px;
+}
+
+@media (max-width: 1230px) {
+  .section {
+    padding: 90px 50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 70px 18px;
+  }
+
+  .section__title {
+    padding-bottom: 28px; 
+    font-size: 18px;
+    letter-spacing: -.72px;
+  }
 }
