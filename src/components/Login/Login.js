@@ -11,7 +11,7 @@ function Login(isLoggedIn) {
             <Input name="email" type="email" title="E-mail" value="pochta@yandex.ru" isLoggedIn={isLoggedIn} placeholder="Введите электронную почту." />
             <Input name="password" type="password" title="Пароль" value="••••••••••••••" isLoggedIn={isLoggedIn} placeholder="Введите пароль." />
             <div className='form__footer'>
-                <Button buttonClassName="button-sign" buttonName="signin" buttonTitle="Войти" />
+                <Button buttonClassName="button-sign button-sign-in" buttonName="signin" buttonTitle="Войти" />
                 <p className="form__span">Ещё не зарегистрированы?
                     <Link to="/signup" className="form__link" replace>Регистрация</Link>
                 </p>

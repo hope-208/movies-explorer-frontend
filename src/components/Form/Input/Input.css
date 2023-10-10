@@ -24,7 +24,6 @@
 
 .form__input-container_edit:last-of-type {
     padding-bottom: 0;
-    margin-bottom: 74px;
 }
 
 .form__label {
@@ -71,8 +70,8 @@
 
 .form__input:invalid {
     color: #EE3465;
-    border: 1px solid #EE3465;
-    box-shadow: 0 0 8px 1px #ee3465cf;
+    /* border: 1px solid #EE3465;
+    box-shadow: 0 0 8px 1px #ee3465cf; */
 }
 
 .form__input_edit {

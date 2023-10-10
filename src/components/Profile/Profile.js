@@ -13,16 +13,18 @@ function Profile(isLoggedIn) {
     };
 
     return (
-        <Form formName="profile" isLoggedIn={isLoggedIn} >
-            <Input name="name" type="text" title="Имя" minLength="2" maxLength="30" value="Виталий" isLoggedIn={isLoggedIn} disabled={!isEdit} placeholder="Введите имя." />
-            <Input name="email" type="email" title="E-mail" value="pochta@yandex.ru" isLoggedIn={isLoggedIn} disabled={!isEdit} placeholder="Введите электронную почту." />
-            <div className='form__footer'>
-                <Button buttonClassName="button-edit" buttonName="edit" buttonTitle={isEdit === false ? 'Редактировать' : 'Сохранить'} onClick={handleEdit} />
-                <p className="form__span">
-                    <Link to="/signin" className="form__link form__link_out" replace>Выйти из аккаунта</Link>
-                </p>
-            </div>
-        </Form>
+        <>
+            <Form formName="profile" isLoggedIn={isLoggedIn} >
+                <Input name="name" type="text" title="Имя" minLength="2" maxLength="30" value="Виталий" isLoggedIn={isLoggedIn} disabled={!isEdit} placeholder="Введите имя." />
+                <Input name="email" type="email" title="E-mail" value="pochta@yandex.ru" isLoggedIn={isLoggedIn} disabled={!isEdit} placeholder="Введите электронную почту." />
+                <div className='form__footer form__footer-edit'>
+                    <Button buttonClassName="button-edit" buttonName="edit" buttonTitle={isEdit === false ? 'Редактировать' : 'Сохранить'} onClick={handleEdit} />
+                    <p className="form__span">
+                        <Link to="/signin" className="form__link form__link_out" replace>Выйти из аккаунта</Link>
+                    </p>
+                </div>
+            </Form>
+        </>
     );
 };
 

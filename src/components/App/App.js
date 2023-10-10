@@ -18,7 +18,10 @@ function App() {
         path="/"
         element={<div className="App">
           <Header main={true} authForm={false} isLoggedIn={false} />
-          <Main />
+          {<main className="main">
+            <Main />
+          </main>}
+
           <Footer /></div>
         }
       />
@@ -26,7 +29,9 @@ function App() {
         path="/signup"
         element={<div className="App">
           <Header main={false} authForm={true} isLoggedIn={false} />
-          <Register isLoggedIn={false} />
+          {<main className="main">
+            <Register isLoggedIn={false} />
+          </main>}
         </div>
         }
       />
@@ -34,7 +39,9 @@ function App() {
         path="/signin"
         element={<div className="App">
           <Header main={false} authForm={true} isLoggedIn={false} />
-          <Login isLoggedIn={false} />
+          {<main className="main">
+            <Login isLoggedIn={false} />
+          </main>}
         </div>
         }
       />
@@ -42,7 +49,9 @@ function App() {
         path="/users/me"
         element={<div className="App">
           <Header main={false} authForm={false} isLoggedIn={true} />
-          <Profile isLoggedIn={true} />
+          {<main className="main">
+            <Profile isLoggedIn={true} />
+          </main>}
         </div>
         }
       />
@@ -50,7 +59,9 @@ function App() {
         path="/movies"
         element={<div className="App">
           <Header main={false} authForm={false} isLoggedIn={true} />
-          <Movies />
+          {<main className="main">
+            <Movies />
+          </main>}
           <Footer />
         </div>
         }
@@ -59,7 +70,9 @@ function App() {
         path="/saved-movies"
         element={<div className="App">
           <Header main={false} authForm={false} isLoggedIn={true} />
-          <SavedMovies />
+          {<main className="main">
+            <SavedMovies />
+          </main>}
           <Footer />
         </div>
         }
@@ -67,7 +80,9 @@ function App() {
       <Route
         path="/*"
         element={<div className="App">
-          <NotFound />
+          {<main className="main">
+            <NotFound />
+          </main>}
         </div>
         }
       />
