@@ -256,12 +256,15 @@
   }
 
   .nav__container {
+    height: fit-content;
     font-size: 18px;
     gap: 31px;
   }
 
   .nav__link-account {
     font-size: 13px;
+    margin: auto 0 46px;
+    position: sticky;
   }
   
   .nav__link-up, .nav__link-in {
@@ -274,6 +277,6 @@
 
   .nav__hamburger-list {
     width: 100vw;
-    padding: 144px 0 46px;
+    padding: 144px 0 0;
   }
 }
