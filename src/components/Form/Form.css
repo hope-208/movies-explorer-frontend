@@ -92,12 +92,10 @@
 
 @media (max-width: 767px) {
     .form {
-        height: calc(100vh - 144px);
         padding: 0 30px;        
     }
 
     .form_edit {
-        height: calc(100vh - 74px - 70px);
         margin: 70px auto 0;
         padding: 0 30px;
     }
@@ -113,7 +111,7 @@
 
     .form__footer {
         position: sticky;
-        margin: auto 0 30px;
+        margin: 0 0 30px;
     }
 
     .form__footer-edit {

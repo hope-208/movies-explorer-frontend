@@ -123,9 +123,16 @@
 
   @media (max-width: 767px) {
     .button-sign {
-      margin: 0;
       padding: 15px;
       font-size: 12px;
+    }
+
+    .button-sign-up {
+      margin: 157px 0 0;
+    }
+
+    .button-sign-in {
+      margin: 247px 0 0;
     }
 
     .button-edit {
