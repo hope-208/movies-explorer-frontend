@@ -1,0 +1,124 @@
+.about-project__list {
+    max-width: 1140px;
+    width: 100%;
+    display: grid;
+    grid: 1fr / repeat(2, 1fr);
+    margin: 0;
+    padding: 70px 0 110px;
+    margin-block: 0;
+    margin-inline: 0;
+    gap: 40px;
+    list-style: none;
+    align-items: start;
+    box-sizing: border-box;
+}
+
+.about-project__item {
+    text-align: left;
+}
+
+.about-project__subtitle {
+    margin: 0;
+    padding: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -.8px;    
+}
+
+.about-project__description {
+    margin: 0;
+    padding: 26px 0 0;
+    margin-block: 0;
+    margin-inline: 0;
+    font-size: 14px;
+    line-height: 20px; /* 142.857% */
+}
+
+.table {
+    max-width: 1140px;
+    width: 100%;
+    display: grid;
+    grid: 1fr / 1fr 4fr;    
+}
+
+.table__container {
+    display: flex;
+    row-gap: 14px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.table__stage {
+    font-size: 14px;
+    padding: 9px 0;
+    margin: 0;
+    margin-block: 0;
+    margin-inline: 0;
+    background: #303030;
+}
+
+.table__stage_span {
+    color: #000;
+    background: #3DDC84;
+}
+
+.table__description {
+    margin: 0;
+    padding: 0;
+    color: #8B8B8B;    
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px; /* 121.429% */
+}
+
+@media (max-width: 1230px) {
+    .about-project__list {
+        padding: 70px 0 88px;
+        gap: 30px;
+    }
+
+    .about-project__description {
+        padding: 20px 0 0;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 767px) {
+    .about-project__list {
+        display: flex;
+        flex-direction: column;
+        padding: 60px 0;
+        gap: 58px;
+    }
+
+    .about-project__subtitle {
+        font-size: 18px;
+        letter-spacing: -.72px;
+    }
+
+    .about-project__description {
+        padding: 16px 0 0;
+        font-size: 11px;
+        line-height: 16px; /* 145.455% */
+    }
+
+    .table {
+        max-width: 708px;
+        grid: 1fr / 100px 1fr;
+    }
+
+    .table__container {
+        row-gap: 10px;
+    }
+
+    .table__stage, .table__description {
+        padding: 11px 10px;
+        font-size: 11px;
+    }
+
+    .table__description {
+        padding: 0;
+    }
+}

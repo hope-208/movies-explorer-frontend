@@ -1,0 +1,107 @@
+.form__input-container {
+    display: flex;
+    max-width: 396px;
+    width: 100%;
+    margin: 0 auto 20px;
+    padding: 0;
+    flex-direction: column;
+    justify-content: left;
+    box-sizing: border-box;  
+}
+
+.form__input-container_edit {
+    max-width: 410px;
+    margin: 0;
+    padding: 16px 0;
+    flex-direction: row;
+    justify-content: space-between;    
+}
+
+.form__input-container_edit:first-of-type {
+    border-bottom: 1px solid #424242;
+    padding-top: 0;
+}
+
+.form__input-container_edit:last-of-type {
+    padding-bottom: 0;
+}
+
+.form__label {
+    margin: 0;
+    padding: 0 0 10px;
+    margin-block: 0;
+    margin-inline: 0;
+    color: #8B8B8B;
+    font-size: 10px;
+}
+
+.form__label_edit {
+    max-width: 141px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #FFF;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.form__input {
+    max-height: 46px;
+    height: 100%;
+    margin: 0;
+    padding: 15px;
+    margin-block: 0;
+    margin-inline: 0;
+    border-radius: 8px;
+    background: #2F2F2F;
+    color: #FFF;
+    font-size: 13px;
+    border: none;
+    box-sizing: border-box;  
+}
+
+.form__input:active,
+.form__input:focus,
+.form__input:focus-visible {
+    border: 1px solid #4285F4;
+    box-shadow: 0 0 8px 1px #4285F4;
+    outline: none;
+}
+
+.form__input:invalid {
+    color: #EE3465;
+    /* border: 1px solid #EE3465;
+    box-shadow: 0 0 8px 1px #ee3465cf; */
+}
+
+.form__input_edit {
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #FFF;
+    text-align: right;
+    font-size: 11px;
+}
+
+.form__input_edit:active,
+.form__input_edit:focus,
+.form__input_edit:focus-visible {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    color: #4285F4;
+}
+
+.form__input_edit:disabled:active,
+.form__input_edit:disabled:focus {
+    color: #FFF;
+}
+
+.form__input_edit:invalid {
+    color: #EE3465;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid #EE3465;
+}
