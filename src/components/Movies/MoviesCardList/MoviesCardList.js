@@ -32,7 +32,7 @@ function MoviesCardList(props) {
 
 
             </section>
-            {isButtonShow && (<Button
+            {isButtonShow && (props.buttonName === "like") && (<Button
                 buttonClassName="button-more"
                 buttonName="more"
                 buttonTitle="Ещё"

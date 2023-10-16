@@ -9,15 +9,16 @@ function Input(props) {
         <label className={labelClassName} htmlFor={props.name}>
             <span className={spanClassName}>{props.title}</span>
             <input
-                className={inputClassName}
-                type={props.type}
-                name={props.name}
                 id={props.name}
+                name={props.name}
+                type={props.type}
+                className={inputClassName}
                 minLength={props.minLength || null}
                 maxLength={props.maxLength || null}
-                defaultValue={props.value || null}
-                disabled={props.disabled}
+                value={props.value}
+                onChange={props.onChange}
                 placeholder={props.placeholder}
+                disabled={props.disabled || false}
                 required
             />
         </label>

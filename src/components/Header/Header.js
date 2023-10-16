@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 
 function Header(props) {
-    const headerClassName = props.authForm | props.isLoggedIn ? "header-auth" : "";
+    const headerClassName = !props.main ? "header-auth" : "";
     const headerClassNameContainer = props.authForm ? "header__container-auth" : "";
     return (
         <header className={`header ${headerClassName}`}>
