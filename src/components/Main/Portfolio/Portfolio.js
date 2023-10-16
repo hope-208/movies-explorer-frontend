@@ -1,6 +1,6 @@
 import React from 'react';
 import './Portfolio.css';
-import { MY_STATIC_WEBSITE, MY_ADAPYIVE_WEBSITE, MY_SPA_WEBSITE } from '../../../utils/utils.js';
+import { MY_STATIC_WEBSITE, MY_ADAPYIVE_WEBSITE, MY_SPA_WEBSITE } from '../../../utils/constants.js';
 
 function Portfolio() {
     return (

@@ -12,6 +12,12 @@
   cursor: pointer;
 }
 
+.button-sign:disabled {
+  background: #F8F8F8;
+  color: #C2C2C2;
+  cursor: not-allowed;
+}
+
 .button-sign-up {
   margin: auto 0 0;
 }
@@ -34,8 +40,7 @@
   cursor: pointer;
 }
 
-.button-edit:disabled,
-.button-edit:disabled:hover {
+.button-edit:disabled {
   color: #C2C2C2;
   cursor: not-allowed;
 }
@@ -130,8 +135,10 @@
 
 .button-sign:hover,
 .button-sign:focus,
+.button-sign:disabled:hover,
 .button-edit:hover,
 .button-edit:focus,
+.button-edit:disabled:hover,
 .button-more:hover,
 .button-more:focus,
 .button-like:hover,

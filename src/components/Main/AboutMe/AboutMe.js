@@ -1,7 +1,7 @@
 import React from 'react';
 import './AboutMe.css';
 import myPhoto from '../../../images/my-photo.jpg';
-import { MY_GITHUB } from '../../../utils/utils.js';
+import { MY_GITHUB } from '../../../utils/constants.js';
 
 function AboutMe() {
     return (

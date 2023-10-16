@@ -1,9 +1,22 @@
-export const LINK_ABOUT_PROJECT = '#about-project';
-export const LINK_TECHS = '#techs';
-export const LINK_ABOUT_ME = '#about-me';
-export const MY_GITHUB = 'https://github.com/hope-208';
-export const MY_STATIC_WEBSITE = 'https://hope-208.github.io/how-to-learn';
-export const MY_ADAPYIVE_WEBSITE = 'https://hope-208.github.io/russian-travel';
-export const MY_SPA_WEBSITE = 'https://hope-208.github.io/mesto';
-export const WEBSITE_OF_YA_PRACTICUM = 'https://practicum.yandex.ru';
-export const REPOSITORY_OF_THIS_WEBSITE = 'https://github.com/hope-208/movies-explorer-frontend';
+import { REGEX_EMAIL, REGEX_NAME } from "../utils/constants.js";
+
+function checkRegexEmail(value) {
+    if (value === undefined) {
+        return { message: "", invalid: true }
+    }
+
+    if (!REGEX_EMAIL.test(value)) {
+        return { message: "Некорректный адрес электронной почты", invalid: true }
+    }
+    return { message: "", invalid: false }
+}
+
+function checkRegexName(value) {
+
+    if (!REGEX_NAME.test(value)) {
+        return { message: "Имя пользователя может содержать только латиницу, кириллицу, дефис и пробел.", invalid: true }
+    }
+    return { message: "", invalid: false }
+}
+
+export { checkRegexEmail, checkRegexName };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './NavTab.css';
-import { LINK_ABOUT_PROJECT, LINK_TECHS, LINK_ABOUT_ME } from '../../../utils/utils.js';
+import { LINK_ABOUT_PROJECT, LINK_TECHS, LINK_ABOUT_ME } from '../../../utils/constants.js';
 
 function NavTab() {
     return (

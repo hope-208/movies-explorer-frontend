@@ -21,6 +21,7 @@ import Preloader from '../Preloader/Preloader.js';
 function App() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [messageError, setMessageError] = React.useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isRegisterSuccessPopupOpen, setIsRegisterSuccessPopupOpen] =
@@ -100,6 +101,10 @@ function App() {
     setLoggedIn(false);
   }
 
+  function handleClearedMessageErrors() {
+    setMessageError('');
+  }
+
   function handleRegisterSuccess() {
     setIsRegisterSuccessPopupOpen(true);
   }
@@ -123,10 +128,12 @@ function App() {
       .then(() => {
         handleRegisterSuccess();
         handleLogin();
+        setMessageError('');
         navigate('/movies', { replace: true });
       })
       .catch((err) => {
         console.log(err);
+        setMessageError(err);
         handleRegisterError();
       })
       .finally(() => {
@@ -141,6 +148,7 @@ function App() {
       .then((data) => {
         localStorage.setItem('jwt', data.token);
         handleLogin();
+        setMessageError('');
         navigate('/movies', { replace: true });
         //   api
         //     .getInitialCards()
@@ -150,6 +158,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setMessageError(err);
         handleLogOut();
       })
       .finally(() => {
@@ -163,10 +172,12 @@ function App() {
       .editMyProfile({ name, email })
       .then((data) => {
         setCurrentUser(data.data);
+        setMessageError('');
         handleEditProfileSuccess();
       })
       .catch((err) => {
         console.log(err);
+        setMessageError(err);
         handleEditProfileError();
       })
       .finally(() => {
@@ -210,7 +221,7 @@ function App() {
             element={<div className="App">
               <Header main={false} authForm={true} isLoggedIn={false} />
               {<main className="main">
-                <Register onSignUp={handleSignUp} isLoggedIn={isLoggedIn} isLoading={isLoading} />
+                <Register onSignUp={handleSignUp} isLoggedIn={isLoggedIn} isLoading={isLoading} messageError={messageError} handleClearedMessageErrors={handleClearedMessageErrors} />
               </main>}
             </div>
             }
@@ -220,7 +231,7 @@ function App() {
             element={<div className="App">
               <Header main={false} authForm={true} isLoggedIn={isLoggedIn} />
               {<main className="main">
-                <Login onSignIn={handleSignIn} isLoggedIn={isLoggedIn} isLoading={isLoading} />
+                <Login onSignIn={handleSignIn} isLoggedIn={isLoggedIn} isLoading={isLoading} messageError={messageError} handleClearedMessageErrors={handleClearedMessageErrors} />
               </main>}
             </div>
             }
@@ -236,6 +247,8 @@ function App() {
                 authForm={false}
                 onSignOut={handleSignOut}
                 isLoading={isLoading}
+                messageError={messageError}
+                handleClearedMessageErrors={handleClearedMessageErrors}
               />
             }
           />
