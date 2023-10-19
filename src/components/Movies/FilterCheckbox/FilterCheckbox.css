@@ -42,9 +42,11 @@ input[type=checkbox] {
 }
 
 .filter-checkbox__input:checked + .filter-checkbox__label:after {
+  
   left: calc(100% - 2px);
   transform: translateX(-100%);
 }
+
 
 .filter-checkbox__label:active:after {
   width: 18px;

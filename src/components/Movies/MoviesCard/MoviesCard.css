@@ -35,6 +35,11 @@
     cursor: pointer;
 }
 
+.element__link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .element__caption {
     grid-row: 2;
     grid-column: 1;
@@ -63,7 +68,7 @@
 .element__title {
     display: block;
     align-self: center;
-    width: 100%;
+    width: 293px;
     margin: 0;
     padding: 0 0 17px 0;
     margin-block: 0;
@@ -83,7 +88,7 @@
 .element__duration {
     display: block;
     align-self: center;
-    width: 100%;
+    width: 293px;
     margin: 0;
     padding: 0;
     margin-block: 0;

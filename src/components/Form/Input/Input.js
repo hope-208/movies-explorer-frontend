@@ -6,13 +6,12 @@ function Input(props) {
     const spanClassName = props.isLoggedIn.isLoggedIn ? 'form__label form__label_edit' : 'form__label';
     const inputClassName = props.isLoggedIn.isLoggedIn ? 'form__input form__input_edit' : 'form__input';
     return (
-        <label className={labelClassName} htmlFor={props.name}>
-            <span className={spanClassName}>{props.title}</span>
-            <input
+        <>
+            {props.name === 'search' ? (<input
                 id={props.name}
                 name={props.name}
                 type={props.type}
-                className={inputClassName}
+                className="search__input"
                 minLength={props.minLength || null}
                 maxLength={props.maxLength || null}
                 value={props.value}
@@ -20,8 +19,25 @@ function Input(props) {
                 placeholder={props.placeholder}
                 disabled={props.disabled || false}
                 required
-            />
-        </label>
+            />) : (<label className={labelClassName} htmlFor={props.name}>
+                <span className={spanClassName}>{props.title}</span>
+                <input
+                    id={props.name}
+                    name={props.name}
+                    type={props.type}
+                    className={inputClassName}
+                    minLength={props.minLength || null}
+                    maxLength={props.maxLength || null}
+                    value={props.value}
+                    onChange={props.onChange}
+                    placeholder={props.placeholder}
+                    disabled={props.disabled || false}
+                    checked={props.checked}
+                    required
+                />
+            </label>)
+            }
+        </>
     );
 }
 

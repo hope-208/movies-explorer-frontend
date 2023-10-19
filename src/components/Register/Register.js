@@ -9,10 +9,12 @@ import { checkRegexEmail, checkRegexName } from "../../utils/utils.js";
 
 
 function Register(props) {
-    const { values, handleChange, errors, isValid, resetForm } =
+
+    const { values, handleChange, errors, isValid } =
         useFormWithValidation();
 
     const { userName, password, email } = values;
+
 
     const handleSubmit = (e) => {
         e.preventDefault();

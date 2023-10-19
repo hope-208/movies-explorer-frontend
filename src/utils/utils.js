@@ -19,4 +19,31 @@ function checkRegexName(value) {
     return { message: "", invalid: false }
 }
 
-export { checkRegexEmail, checkRegexName };
+function filtredMoviesInSeachResult(movies, searchData) {
+    if (searchData.isChecked) {
+        return movies
+            .filter((movie) => movie.duration <= 40)
+            .filter((movie) =>
+                movie.nameRU
+                    .trim()
+                    .toLowerCase()
+                    .includes(searchData.string.trim().toLowerCase()) ||
+                movie.nameEN
+                    .trim()
+                    .toLowerCase()
+                    .includes(searchData.string.trim().toLowerCase())
+            );
+    } else {
+        return movies.filter((movie) =>
+            movie.nameRU
+                .trim()
+                .toLowerCase()
+                .includes(searchData.string.trim().toLowerCase()) ||
+            movie.nameEN
+                .trim()
+                .toLowerCase()
+                .includes(searchData.string.trim().toLowerCase()));
+    }
+}
+
+export { checkRegexEmail, checkRegexName, filtredMoviesInSeachResult };

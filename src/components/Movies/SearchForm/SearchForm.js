@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import Error from '../../Form/Error/Error';
+import Button from '../../Button/Button';
+import Form from '../../Form/Form';
+import Input from '../../Form/Input/Input';
 
-function SearchForm() {
+function SearchForm(props) {
+    const [error, setError] = useState("");
+    const [searchMovie, setSearchMovie] = useState("");
+
+    function handleError(evt) {
+        setError(evt.target.validationMessage);
+        setSearchMovie(evt.target.value);
+        props.handleInput(evt);
+    }
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault();
+        if (searchMovie === '') {
+            return setError("Нужно ввести ключевое слово.")
+        }
+        props.onSubmit();
+    };
+
     return (
         <section className="search-form" aria-label="Блок поиска фильмов.">
-            <form className="search">
+            <Form formName="search" isLoggedIn={props.isLoggedIn} onSubmit={handleSubmit}>
                 <div className="search__container">
-                    <input className="search__input" type="search" placeholder="Фильм" id="search" name="search" />
-                    <button className="search__submit" type="submit"></button>
+                    <Input name="search" type="search" title="Введите ключевое(ые) слово(а) для поиска." placeholder="Фильм" isLoggedIn={props.isLoggedIn} onChange={handleError} value={props.searchString} />
+                    <Error classNameError="form__error form__error-search" textError={error || ""} />
+                    <Button buttonClassName="search__submit" type="submit" />
                 </div>
-                <FilterCheckbox />
-            </form>
+                <FilterCheckbox onChange={props.onChange} checked={props.checked} />
+            </Form>
         </section>
     );
 }

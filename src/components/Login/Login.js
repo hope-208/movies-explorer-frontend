@@ -9,18 +9,10 @@ import { checkRegexEmail } from "../../utils/utils.js";
 
 function Login(props) {
 
-    const { values, handleChange, errors, isValid, resetForm } =
+    const { values, handleChange, errors, isValid } =
         useFormWithValidation();
 
     const { email, password } = values;
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     const data = { email: email, password: password };
-    //     props.onSignUp(data);
-    // };
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();

@@ -19,10 +19,10 @@ function Form(props) {
 
     return (
         <form
-            className={formClassName}
+            className={props.formName !== 'search' ? formClassName : 'search'}
             name={props.formName}
             onSubmit={props.onSubmit} >
-            <h1 className={formTitleClassName}>{formTitle}</h1>
+            {props.formName !== 'search' && (<h1 className={formTitleClassName}>{formTitle}</h1>)}
             {props.children}
         </form>
     );
