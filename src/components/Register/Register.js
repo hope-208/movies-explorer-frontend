@@ -26,7 +26,8 @@ function Register(props) {
         <Form
             formName="register"
             isLoggedIn={props.isLoggedIn}
-            onSubmit={handleSubmit} >
+            onSubmit={handleSubmit}
+            formTitle="Добро пожаловать!" >
             <Input name="userName"
                 type="text"
                 title="Имя"

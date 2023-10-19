@@ -26,7 +26,7 @@ function Login(props) {
     };
 
     return (
-        <Form formName="login" isLoggedIn={props.isLoggedIn} onSubmit={handleSubmit}>
+        <Form formName="login" isLoggedIn={props.isLoggedIn} onSubmit={handleSubmit} formTitle="Рады видеть!" >
             <Input name="email" type="email" title="E-mail" isLoggedIn={props.isLoggedIn} placeholder="Введите электронную почту." value={email} onChange={handleChange} />
             <Error textError={errors.email || checkRegexEmail(email).message} />
             <Input name="password" type="password" title="Пароль" minLength="6" isLoggedIn={props.isLoggedIn} placeholder="Введите пароль." value={password} onChange={handleChange} />

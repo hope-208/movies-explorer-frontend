@@ -68,7 +68,7 @@
 .element__title {
     display: block;
     align-self: center;
-    width: 293px;
+    width: 90%;
     margin: 0;
     padding: 0 0 17px 0;
     margin-block: 0;
@@ -88,7 +88,7 @@
 .element__duration {
     display: block;
     align-self: center;
-    width: 293px;
+    width: 90%;
     margin: 0;
     padding: 0;
     margin-block: 0;

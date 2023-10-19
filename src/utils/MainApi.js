@@ -37,7 +37,10 @@ class Api {
             credentials: 'include',
             headers: this._headers,
         })
-            .then((res) => this._checkResponse(res));
+            .then((res) => {
+                console.log(res);
+                this._checkResponse(res)
+            });
     }
 
     editMyProfile({ name, email }) {
@@ -55,6 +58,9 @@ class Api {
     }
 
     addMovie(data) {
+        debugger
+        console.log('addMovie', data);
+        console.log('addMovie movieId', data.id);
         return fetch(`${this._baseUrl}/movies`, {
             method: "POST",
             credentials: 'include',

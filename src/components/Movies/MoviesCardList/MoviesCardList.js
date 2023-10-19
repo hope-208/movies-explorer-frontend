@@ -12,15 +12,22 @@ function MoviesCardList(props) {
     const { movies: moviesList, useHandleClickShowMore: handleClickShowMore } = useSizeMoviesList(windowWidth);
 
     function defineStatusSaved(movie) {
-        return props.savedMovies.some((item) => {
-            if (item.movieId === movie.id) {
-                movie._id = item._id;
+        console.log(movie);
+        console.log(props.savedMovies);
+        debugger
+        // if (props.savedMovies.length !== 0) {
+        return props.savedMovies.some((card) => {
+            console.log(card);
+            debugger
+            if (card.movieId === movie.id) {
+                movie._id = card._id;
                 return true;
             } else {
                 return false;
             }
         });
     }
+
     return (
         <>
             <section className="elements" aria-label="Фильмы.">

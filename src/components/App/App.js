@@ -41,6 +41,27 @@ function App() {
   const [messagePopup, setMessagePopup] = useState("");
   const [iconPopup, setIconPopup] = useState(null);
 
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      Promise.all([api.getProfileInfo(), api.getProfileMovies()])
+        .then((data) => {
+          setCurrentUser(data[0]);
+          if (data[1] === undefined) {
+            setSavedMovies([]);
+            setSavedMoviesSearchResult([]);
+          } else {
+            setSavedMovies(data[1]);
+            setSavedMoviesSearchResult(data[1]);
+          }
+          console.log(savedMovies);
+        })
+        .catch((err) => {
+          console.log(err);
+          setMessagePopup(err);
+        });
+    }
+  }, [isLoggedIn]);
+
   const checkIsToken = useCallback(() => {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -48,20 +69,7 @@ function App() {
         .then((res) => {
           const data = res.data;
           setCurrentUser(data);
-          if (res) {
-            handleLogin();
-            navigate('/movies', { replace: true });
-            api
-              .getProfileInfo()
-              .then((data) => {
-                api
-                  .getProfileMovies()
-                  .then((data) => {
-                    setSavedMovies(data.data);
-                    setSavedMoviesSearchResult(data.data);
-                  })
-              });
-          }
+          handleLogin();
         })
         .catch((err) => {
           console.log(err);
@@ -229,11 +237,6 @@ function App() {
   }
 
   useEffect(() => {
-    handleSearchMovies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, searchSavedMovies]);
-
-  useEffect(() => {
     const searchAll = localStorage.getItem("searchAll");
     const searchIsChecked = localStorage.getItem("searchIsChecked");
     const localStorageMoviesRequest = JSON.parse(localStorage.getItem("moviesRequest"));
@@ -268,27 +271,6 @@ function App() {
   function handleInputSeachSavedMovies(evt) {
     const searchString = evt.target.value;
     setSearchSavedMovies((value) => ({ ...value, string: searchString }));
-  }
-
-  function handleClickButtonSavedMovie(movie) {
-    setIsLoading(true);
-    api.addMovie(movie)
-      .then((data) => {
-        setSavedMovies([...savedMovies, data]);
-        setSavedMoviesSearchResult([...savedMovies, data]);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-
-  function handleDeleteMovie(movie) {
-
-    api.deleteMovie(movie._id).then((data) => {
-      const newCards = savedMovies.filter((c) => c._id !== movie._id);
-      setSavedMoviesSearchResult(newCards);
-      setSavedMovies(newCards);
-    });
   }
 
   useEffect(() => {
@@ -326,6 +308,38 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  function handleClickButtonSavedMovie(movie) {
+    setIsLoading(true);
+    console.log(savedMovies);
+    console.log(movie);
+    console.log(typeof movie);
+    debugger
+    api
+      .addMovie(movie)
+      .then((data) => {
+        debugger
+        console.log('addMovie data', data);
+        console.log('savedMovies', savedMovies);
+        setSavedMovies(savedMovies);
+        setSavedMoviesSearchResult(savedMovies);
+      })
+      .catch((err) => { })
+      .finally(() => {
+        console.log(savedMovies);
+        debugger
+        setIsLoading(false);
+      });
+  }
+
+  function handleDeleteMovie(movie) {
+
+    api.deleteMovie(movie._id).then((data) => {
+      const newCards = savedMovies.filter((c) => c._id !== movie._id);
+      setSavedMoviesSearchResult(newCards);
+      setSavedMovies(newCards);
+    });
   }
 
   function handleSignOut() {

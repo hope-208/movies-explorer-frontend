@@ -1,23 +1,27 @@
-import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Button from '../../Button/Button';
 import './MoviesCard.css';
 
 function MoviesCard(props) {
     let { pathname } = useLocation();
-    const [buttonClassName, setButtonClassName] = useState('button-like');
+    // const [buttonClassName, setButtonClassName] = useState('button-like');
 
-    useEffect(() => {
-        if (props.defineStatusSaved === true) {
-            setButtonClassName('button-like button-like_active');
-        } else {
-            setButtonClassName('button-like');
-        }
-    }, [props.defineStatusSaved]
-    )
-
+    // useEffect(() => {
+    //     
+    //     if (props.defineStatusSaved === true) {
+    //         setButtonClassName('button-like button-like_active');
+    //     } else {
+    //         setButtonClassName('button-like');
+    //     }
+    // }, [props.defineStatusSaved]
+    // )
+    // console.log(props.defineStatusSaved);
     function handleButtonSaveMovieClick() {
+        console.log(props.card);
+        debugger
         props.handleClickButtonSavedMovie(props.card);
+        debugger
+        console.log(props);
     }
 
     function handleButtonDeleteMovieClick() {
@@ -42,10 +46,8 @@ function MoviesCard(props) {
                 </div>
 
 
-                {pathname === "/movies" && props.defineStatusSaved === false && <Button buttonClassName={buttonClassName} buttonName={props.buttonName} type="button" onClick={handleButtonSaveMovieClick} />}
+                {pathname === "/movies" && props.defineStatusSaved === false && <Button buttonClassName={props.defineStatusSaved === false ? 'button-like' : 'button-like button-like_active'} buttonName={props.buttonName} type="button" onClick={props.defineStatusSaved === false ? handleButtonSaveMovieClick : handleButtonDeleteMovieClick} />}
                 {pathname === "/saved-movies" && <Button buttonClassName="button-delete" buttonName={props.buttonName} type="button" onClick={handleButtonDeleteMovieClick} />}
-
-                {props.defineStatusSaved === true && pathname === "/movies" && <Button buttonClassName={buttonClassName} buttonName={props.buttonName} type="button" onClick={handleButtonDeleteMovieClick} />}
 
             </div>
         </article>
