@@ -2,8 +2,6 @@ import React from 'react';
 import './FilterCheckbox.css';
 
 function FilterCheckbox(props) {
-    console.log(props.checked);
-    console.log('store', localStorage.getItem("searchIsChecked"));
 
     return (
         <div className="filter-checkbox">

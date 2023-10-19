@@ -216,13 +216,12 @@ function App() {
 
     if (localStorageAllFilms) {
       const filtredMoviesSearch = filtredMoviesInSeachResult(localStorageAllFilms, search);
-      if (filtredMoviesSearch < 1) {
+      if (filtredMoviesSearch.length < 1) {
         setTextSearchError("Ничего не найдено.");
       }
       setIsLoading(false);
-      setMovies(filtredMoviesSearch); //+
+      setMovies(filtredMoviesSearch);
       localStorage.setItem("searchAll", search.string);
-      // console.log(search);
       localStorage.setItem("searchIsChecked", search.isChecked);
       localStorage.setItem("moviesRequest", JSON.stringify(filtredMoviesSearch));
       return;
@@ -249,16 +248,11 @@ function App() {
     }
     const searchIsChecked = evt.target.checked;
     setSearch((value) => ({ ...value, isChecked: searchIsChecked }));
-
-    // console.log(search.isChecked);
-    // console.log(localStorage.getItem("searchIsChecked"));
   }
 
   function handleInputSeach(evt) {
     const searchString = evt.target.value;
-    // console.log(searchString);
     setSearch((value) => ({ ...value, string: searchString }));
-    // console.log(search);
   }
 
   // useEffect(() => {
@@ -283,7 +277,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // (savedMovies);
     setSearchSavedMovies({
       string: "",
       isChecked: false,
@@ -292,14 +285,15 @@ function App() {
       handleSearchSavedMovies();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [savedMovies, savedMoviesPage]); //+
+  }, [savedMovies, savedMoviesPage]);
 
   useEffect(() => {
     handleSearchSavedMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchSavedMovies.isChecked]);
+  }, [searchSavedMovies.isChecked, search.isChecked]);
 
   function handleSearchSavedMovies() {
+    setIsLoading(true);
     const filtredMoviesSearch = filtredMoviesInSeachResult(savedMovies, searchSavedMovies);
 
     if (filtredMoviesSearch.length < 1) {
@@ -307,40 +301,18 @@ function App() {
     }
 
     setMoviesSearchResult(filtredMoviesSearch);
+    setIsLoading(false);
   }
 
   function handleValueCheckboxSavedMovies(evt) {
     const searchIsChecked = evt.target.checked;
     setSearchSavedMovies((value) => ({ ...value, isChecked: searchIsChecked }));
-    // console.log(searchSavedMovies.isChecked);
-    // console.log(localStorage.getItem("searchIsChecked"));
   }
 
   function handleInputSeachSavedMovies(evt) {
     const searchString = evt.target.value;
-    // console.log(searchSavedMovies.isChecked);
     setSearchSavedMovies((value) => ({ ...value, string: searchString }));
   }
-
-  // function handleClickButtonSavedMovie(movie) {
-  //   console.log(savedMovies);
-  //   console.log(movie);
-  //   console.log(typeof movie);
-
-  //   api
-  //     .addMovie(movie)
-  //     .then((data) => {
-  //       savedMovies.push(data);
-  //       api.getProfileMovies()
-  //         .then((res) => {
-  //           console.log('getProfileMovies', res);
-  //           return res.json();
-  //         })
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-
 
   async function handleClickButtonSavedMovie(movie) {
     setIsLoading(true);
@@ -349,11 +321,11 @@ function App() {
       if (newSavedMovie) {
         setMoviesSearchResult([...savedMovies, newSavedMovie]);
         setSavedMovies([...savedMovies, newSavedMovie]);
-      }
-      setIsLoading(false);
+      };
     } catch (err) {
       console.log(err);
     };
+    setIsLoading(false);
   }
 
   function handleDeleteMovie(movie) {
@@ -438,8 +410,8 @@ function App() {
               main={false}
               authForm={false}
               onSubmit={handleSearchMovies}
-              movies={movies} //+
-              savedMovies={savedMovies} //+
+              movies={movies}
+              savedMovies={savedMovies}
               onChange={handleValueCheckbox}
               handleInput={handleInputSeach}
               isLoading={isLoading}
@@ -461,7 +433,7 @@ function App() {
               authForm={false}
               onSubmit={handleSearchSavedMovies}
               movies={moviesSearchResult}
-              savedMovies={savedMovies} //+
+              savedMovies={savedMovies}
               onChange={handleValueCheckboxSavedMovies}
               handleInput={handleInputSeachSavedMovies}
               isLoading={isLoading}
