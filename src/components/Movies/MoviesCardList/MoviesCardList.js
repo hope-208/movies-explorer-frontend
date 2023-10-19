@@ -11,11 +11,12 @@ function MoviesCardList(props) {
     const windowWidth = useDefineWindowWidth();
     const { movies: moviesList, useHandleClickShowMore: handleClickShowMore } = useSizeMoviesList(windowWidth);
     console.log(props.savedMovies);
-    const result = Object.keys(props.savedMovies).map(key => props.savedMovies[key]);
-    console.log(result);
+    // const result = Object.keys(props.savedMovies).map(key => props.savedMovies[key]);
+    // console.log(result);
     function defineStatusSaved(movie) {
-
-        return result.some((card) => {
+        console.log(movie);
+        console.log(props.savedMovies);
+        return props.savedMovies.some((card) => {
             if (card.movieId === movie.id) {
                 movie._id = card._id;
                 return true;

@@ -15,13 +15,13 @@ function MoviesCard(props) {
     //     }
     // }, [props.defineStatusSaved]
     // )
-    // console.log(props.defineStatusSaved);
+    console.log(props.defineStatusSaved);
     function handleButtonSaveMovieClick() {
-        console.log(props.card);
+        /// / console.log(props.card);
         // 
         props.handleClickButtonSavedMovie(props.card);
 
-        console.log(props.savedMovies);
+        //  console.log(props.savedMovies);
         // 
         // console.log(props);
     }

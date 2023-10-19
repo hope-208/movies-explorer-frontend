@@ -46,28 +46,28 @@ function App() {
   const [messagePopup, setMessagePopup] = useState("");
   const [iconPopup, setIconPopup] = useState(null);
 
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      Promise.all([api.getProfileInfo(), api.getProfileMovies()])
-        .then((data) => {
-          setCurrentUser(data[0]);
-          console.log(data[1]);
-          if (data[1] === undefined) {
-            setSavedMovies([]);
-            setMoviesSearchResult([]);
-          } else {
-            setSavedMovies(data[1]);
-            setMoviesSearchResult(data[1]);
-          }
-          console.log(savedMovies);
-        })
-        .catch((err) => {
-          console.log(err);
-          setMessagePopup(err);
-        });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoggedIn]);
+  // React.useEffect(() => {
+  //   if (isLoggedIn) {
+  //     Promise.all([api.getProfileInfo(), api.getProfileMovies()])
+  //       .then((data) => {
+  //         setCurrentUser(data[0]);
+  //         console.log(data[1]);
+  //         if (data[1] === undefined) {
+  //           setSavedMovies([]);
+  //           setMoviesSearchResult([]);
+  //         } else {
+  //           setSavedMovies(data[1]);
+  //           setMoviesSearchResult(data[1]);
+  //         }
+  //         console.log(savedMovies);
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //         setMessagePopup(err);
+  //       });
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isLoggedIn]);
 
   const checkIsToken = useCallback(() => {
     const jwt = localStorage.getItem('jwt');
@@ -76,7 +76,20 @@ function App() {
         .then((res) => {
           const data = res.data;
           setCurrentUser(data);
-          handleLogin();
+          if (res) {
+            handleLogin();
+            navigate('/movies', { replace: true });
+            api
+              .getProfileInfo()
+              .then((data) => {
+                api
+                  .getProfileMovies()
+                  .then((data) => {
+                    setSavedMovies(data.data);
+                    setMoviesSearchResult(data.data);
+                  })
+              });
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -232,7 +245,7 @@ function App() {
       setIsLoading(false);
       setMovies(filtredMoviesSearch); //+
       localStorage.setItem("searchAll", search.string);
-      console.log(search);
+      // console.log(search);
       localStorage.setItem("searchIsChecked", search.isChecked);
       localStorage.setItem("moviesRequest", JSON.stringify(filtredMoviesSearch));
       return;
@@ -242,7 +255,7 @@ function App() {
       .getAllMovies()
       .then((data) => {
         localStorage.setItem("beatfilmMovies", JSON.stringify(data));
-        // handleSearchMovies();
+        handleSearchMovies();
       })
       .catch((err) => {
         console.log(err);
@@ -266,14 +279,14 @@ function App() {
 
   function handleInputSeach(evt) {
     const searchString = evt.target.value;
-    console.log(searchString);
+    // console.log(searchString);
     setSearch((value) => ({ ...value, string: searchString }));
-    console.log(search);
+    // console.log(search);
   }
 
   // useEffect(() => {
   //   handleSearchMovies();
-  // }, [search]);
+  // }, [search, searchSavedMovies]);
 
   useEffect(() => {
     const searchAll = localStorage.getItem("searchAll");
@@ -293,7 +306,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(savedMovies);
+    // (savedMovies);
     setSearchSavedMovies({
       string: "",
       isChecked: false,
@@ -332,43 +345,56 @@ function App() {
     setSearchSavedMovies((value) => ({ ...value, string: searchString }));
   }
 
+  // function handleClickButtonSavedMovie(movie) {
+  //   console.log(savedMovies);
+  //   console.log(movie);
+  //   console.log(typeof movie);
+
+  //   api
+  //     .addMovie(movie)
+  //     .then((data) => {
+  //       savedMovies.push(data);
+  //       api.getProfileMovies()
+  //         .then((res) => {
+  //           console.log('getProfileMovies', res);
+  //           return res.json();
+  //         })
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+
+
   function handleClickButtonSavedMovie(movie) {
-    console.log(savedMovies);
-    console.log(movie);
-    console.log(typeof movie);
-
-    api
-      .addMovie(movie)
+    setIsLoading(true);
+    api.addMovie(movie)
       .then((data) => {
-        savedMovies.push(data);
-        api.getProfileMovies()
-          .then((res) => {
-            console.log('getProfileMovies', res);
-            return res.json();
-          })
+        setSavedMovies([...savedMovies, data]);
+        setMoviesSearchResult([...savedMovies, data]);
       })
-      .catch((err) => {
-        console.log(err);
+      .finally(() => {
+        setIsLoading(false);
       });
-
-    // api.getProfileMovies().
-    //   then((data) => {
-    //     console.log('getProfileMovies', data);
-    //   });
-    // console.log('addMovie data', data);
-    // 
-    // console.log('typeof data: ', typeof data);
-    // console.log('typeof savedMovies: ', typeof savedMovies);
-    // console.log('[...savedMovies, data]', [...savedMovies, data]);
-    // 
-    // console.log('savedMovies after push', savedMovies);
-    // setSavedMovies([...savedMovies, data]);
-    // setMoviesSearchResult([...savedMovies, data]);
-    // console.log('savedMovies after add', savedMovies);
-
-    console.log('savedMovies after push and get', savedMovies);
-    console.log('savedMovies after push and get typeof: ', typeof savedMovies);
   }
+
+  // api.getProfileMovies().
+  //   then((data) => {
+  //     console.log('getProfileMovies', data);
+  //   });
+  // console.log('addMovie data', data);
+  // 
+  // console.log('typeof data: ', typeof data);
+  // console.log('typeof savedMovies: ', typeof savedMovies);
+  // console.log('[...savedMovies, data]', [...savedMovies, data]);
+  // 
+  // console.log('savedMovies after push', savedMovies);
+  // setSavedMovies([...savedMovies, data]);
+  // setMoviesSearchResult([...savedMovies, data]);
+  // console.log('savedMovies after add', savedMovies);
+
+  //   console.log('savedMovies after push and get', savedMovies);
+  //   console.log('savedMovies after push and get typeof: ', typeof savedMovies);
+  // }
 
   function handleDeleteMovie(movie) {
 

@@ -12,6 +12,10 @@ class Api {
             throw JSON.parse(text).message || JSON.parse(text).error;
 
         });
+        // return res.text().then((text) => {
+        //     throw JSON.parse(text).message || JSON.parse(text).error;
+
+        // });
     }
 
     _loadToken() {
