@@ -11,13 +11,16 @@ function SearchForm(props) {
     const [keyWordSearchMovie, setKeyWordSearchMovie] = useState(props.searchString);
 
     function handleError(evt) {
-        setError(evt.target.validationMessage);
+
         setKeyWordSearchMovie(evt.target.value);
+        setError(evt.target.validationMessage);
+        console.log(keyWordSearchMovie);
         props.handleInput(evt);
     }
 
     const handleSubmit = (evt) => {
         console.log(keyWordSearchMovie);
+
         evt.preventDefault();
         if (keyWordSearchMovie === '') {
             return setError("Нужно ввести ключевое слово.")
@@ -27,9 +30,9 @@ function SearchForm(props) {
     console.log(error);
     return (
         <section className="search-form" aria-label="Блок поиска фильмов.">
-            <Form formName="search" isLoggedIn={props.isLoggedIn} onSubmit={handleSubmit}>
+            <Form formName="search" onSubmit={handleSubmit}>
                 <div className="search__container">
-                    <Input name="search" type="search" title="Введите ключевое(ые) слово(а) для поиска." placeholder="Фильм" isLoggedIn={props.isLoggedIn} onChange={handleError} value={props.searchString} />
+                    <Input name="search" type="search" title="Введите ключевое(ые) слово(а) для поиска." placeholder="Фильм" isLoggedIn={props.isLoggedIn} onChange={handleError} minLength={1} value={props.searchString} />
                     <Error classNameError="form__error form__error-search" textError={error || ""} />
                     <Button buttonClassName="search__submit" type="submit" />
                 </div>

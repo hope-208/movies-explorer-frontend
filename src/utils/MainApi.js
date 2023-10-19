@@ -18,18 +18,6 @@ class Api {
         this._headers.Authorization = `Bearer ${localStorage.getItem('jwt')}`
     }
 
-    getProfileMovies() {
-        this._loadToken();
-        return fetch(`${this._baseUrl}/movies`, {
-            method: 'GET',
-            credentials: 'include',
-            headers: this._headers,
-        })
-            .then((res) => {
-                this._checkResponse(res);
-            });
-    }
-
     getProfileInfo() {
         this._loadToken();
         return fetch(`${this._baseUrl}/users/me`, {
@@ -39,6 +27,25 @@ class Api {
         })
             .then((res) => {
                 this._checkResponse(res)
+            });
+    }
+
+    getProfileMovies() {
+        this._loadToken();
+        return fetch(`${this._baseUrl}/movies`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                } else {
+                    return Promise.reject(`Код ошибки: ${res.status}`);
+                }
             });
     }
 
@@ -58,8 +65,6 @@ class Api {
 
     addMovie(data) {
 
-        console.log('addMovie', data);
-        console.log('addMovie movieId', data.id);
         return fetch(`${this._baseUrl}/movies`, {
             method: "POST",
             credentials: 'include',
@@ -73,12 +78,16 @@ class Api {
                 duration: data.duration,
                 description: data.description,
                 trailerLink: data.trailerLink,
-                image: `https://api.nomoreparties.co/${data.image.url}`,
-                thumbnail: `https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`,
+                image: `https://api.nomoreparties.co${data.image.url}`,
+                thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
                 movieId: data.id,
             }),
         }).then((res) => {
-            this._checkResponse(res)
+            if (res.ok) {
+                return res.json();
+            } else {
+                return Promise.reject(`Код ошибки: ${res.status}`);
+            }
         });
     }
 
