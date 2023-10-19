@@ -8,14 +8,12 @@ import Input from '../../Form/Input/Input';
 
 function SearchForm(props) {
     const [error, setError] = useState("");
-    // const [keyWordSearchMovie, setKeyWordSearchMovie] = useState(props.searchString);
     const [keyWordSearchMovie, setKeyWordSearchMovie] = useState('');
 
     function handleError(evt) {
 
         setKeyWordSearchMovie(evt.target.value);
         setError(evt.target.validationMessage);
-        // console.log(keyWordSearchMovie);
         props.handleInput(evt);
     }
 
@@ -23,13 +21,11 @@ function SearchForm(props) {
 
 
         evt.preventDefault();
-        //  console.log(keyWordSearchMovie);
         if (keyWordSearchMovie === '') {
             return setError("Нужно ввести ключевое слово.")
         }
         props.onSubmit();
     };
-    // console.log(error);
     return (
         <section className="search-form" aria-label="Блок поиска фильмов.">
             <Form formName="search" onSubmit={handleSubmit}>

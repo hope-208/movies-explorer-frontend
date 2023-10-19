@@ -26,48 +26,25 @@ function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [textSearchError, setTextSearchError] = useState("");
-  //стейт для хранения найденных фильмов
-  const [movies, setMovies] = useState([]); //+
-  //стейт для хранения сохраненных фильмов
+
+  const [movies, setMovies] = useState([]);
+
   const [savedMovies, setSavedMovies] = useState([]);
-  //стейт для хранения данных поискового запроса
+
   const [search, setSearch] = React.useState({
     string: "",
     isChecked: false
   });
-  // стейт для хранения поискового запроса со страницы сохраненных фильмов
+
   const [searchSavedMovies, setSearchSavedMovies] = React.useState({
     string: "",
     isChecked: false
   });
-  // стейт для хранения результатов поиска на saved-movies
+
   const [moviesSearchResult, setMoviesSearchResult] = useState([]);
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [messagePopup, setMessagePopup] = useState("");
   const [iconPopup, setIconPopup] = useState(null);
-
-  // React.useEffect(() => {
-  //   if (isLoggedIn) {
-  //     Promise.all([api.getProfileInfo(), api.getProfileMovies()])
-  //       .then((data) => {
-  //         setCurrentUser(data[0]);
-  //         console.log(data[1]);
-  //         if (data[1] === undefined) {
-  //           setSavedMovies([]);
-  //           setMoviesSearchResult([]);
-  //         } else {
-  //           setSavedMovies(data[1]);
-  //           setMoviesSearchResult(data[1]);
-  //         }
-  //         console.log(savedMovies);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //         setMessagePopup(err);
-  //       });
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [isLoggedIn]);
 
   const checkIsToken = useCallback(() => {
     const jwt = localStorage.getItem('jwt');
@@ -365,36 +342,19 @@ function App() {
   //     });
 
 
-  function handleClickButtonSavedMovie(movie) {
+  async function handleClickButtonSavedMovie(movie) {
     setIsLoading(true);
-    api.addMovie(movie)
-      .then((data) => {
-        setSavedMovies([...savedMovies, data]);
-        setMoviesSearchResult([...savedMovies, data]);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      const newSavedMovie = await api.addMovie(movie);
+      if (newSavedMovie) {
+        setMoviesSearchResult([...savedMovies, newSavedMovie]);
+        setSavedMovies([...savedMovies, newSavedMovie]);
+      }
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    };
   }
-
-  // api.getProfileMovies().
-  //   then((data) => {
-  //     console.log('getProfileMovies', data);
-  //   });
-  // console.log('addMovie data', data);
-  // 
-  // console.log('typeof data: ', typeof data);
-  // console.log('typeof savedMovies: ', typeof savedMovies);
-  // console.log('[...savedMovies, data]', [...savedMovies, data]);
-  // 
-  // console.log('savedMovies after push', savedMovies);
-  // setSavedMovies([...savedMovies, data]);
-  // setMoviesSearchResult([...savedMovies, data]);
-  // console.log('savedMovies after add', savedMovies);
-
-  //   console.log('savedMovies after push and get', savedMovies);
-  //   console.log('savedMovies after push and get typeof: ', typeof savedMovies);
-  // }
 
   function handleDeleteMovie(movie) {
 
@@ -402,7 +362,6 @@ function App() {
       const newCards = savedMovies.filter((c) => c._id !== movie._id);
       setMoviesSearchResult(newCards);
       setSavedMovies(newCards);
-      console.log(savedMovies);
     });
   }
 
@@ -418,7 +377,7 @@ function App() {
     setSearch({ string: "", isChecked: false });
     setMessagePopup("");
     setTextSearchError("");
-    setMovies([]); //+
+    setMovies([]);
   }
 
   return (

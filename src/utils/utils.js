@@ -20,7 +20,6 @@ function checkRegexName(value) {
 }
 
 function filtredMoviesInSeachResult(movies, searchData) {
-    // console.log(searchData);
     if (searchData.isChecked) {
         return movies
             .filter((movie) => movie.duration <= 40)

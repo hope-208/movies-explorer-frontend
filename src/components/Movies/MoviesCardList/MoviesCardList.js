@@ -10,12 +10,9 @@ function MoviesCardList(props) {
     let { pathname } = useLocation();
     const windowWidth = useDefineWindowWidth();
     const { movies: moviesList, useHandleClickShowMore: handleClickShowMore } = useSizeMoviesList(windowWidth);
-    console.log(props.savedMovies);
-    // const result = Object.keys(props.savedMovies).map(key => props.savedMovies[key]);
-    // console.log(result);
+
+
     function defineStatusSaved(movie) {
-        console.log(movie);
-        console.log(props.savedMovies);
         return props.savedMovies.some((card) => {
             if (card.movieId === movie.id) {
                 movie._id = card._id;
@@ -26,26 +23,44 @@ function MoviesCardList(props) {
         });
     }
 
+
     return (
         <>
             <section className="elements" aria-label="Фильмы.">
 
-                {props.isLoading ? <Preloader /> : ((props.movies.length === 0)
-                    ? (<p className="elements__span">{props.messageError}</p>)
-                    : (props.movies.slice(0, moviesList).map((card) => (
-                        <MoviesCard
-                            key={`${pathname === "/saved-movies" ? card._id : card.id}`}
-                            card={card}
-                            handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
-                            handleDeleteMovie={props.handleDeleteMovie}
-                            defineStatusSaved={defineStatusSaved(card)}
-                        />
-                    ))))
-                }
-
+                {props.isLoading
+                    ? <Preloader />
+                    : (
+                        (props.movies.length === 0)
+                            ? (<p className="elements__span">{props.messageError}</p>)
+                            : (pathname === "/movies"
+                                ? (props.movies.slice(0, moviesList).map((card) =>
+                                (
+                                    <MoviesCard
+                                        key={`${pathname === "/saved-movies" ? card._id : card.id}`}
+                                        card={card}
+                                        handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
+                                        handleDeleteMovie={props.handleDeleteMovie}
+                                        defineStatusSaved={defineStatusSaved(card)}
+                                    />
+                                )
+                                ))
+                                : (
+                                    props.movies.map((card) =>
+                                    (
+                                        <MoviesCard
+                                            key={`${pathname === "/saved-movies" ? card._id : card.id}`}
+                                            card={card}
+                                            handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
+                                            handleDeleteMovie={props.handleDeleteMovie}
+                                            defineStatusSaved={defineStatusSaved(card)}
+                                        />
+                                    )
+                                    ))
+                            ))}
 
             </section>
-            {(props.buttonShowMore && props.movies.length > moviesList)
+            {(pathname === "/movies" && props.movies.length > moviesList)
                 && (<Button
                     buttonClassName="button-more"
                     buttonName="more"

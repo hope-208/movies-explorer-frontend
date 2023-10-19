@@ -33,9 +33,7 @@ function Profile(props) {
             email: email,
         });
     }
-    // console.log(!isValid ||
-    //     checkRegexEmail(email).invalid ||
-    //     checkRegexName(name).invalid || ((currentUser.name === values.name) && (currentUser.email === values.email)));
+
     return (
         <>
             <Header main={props.main} authForm={props.authForm} isLoggedIn={props.isLoggedIn} />
