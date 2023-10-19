@@ -40,7 +40,7 @@ export function useSizeMoviesList(windowWidth) {
             } else
                 if (windowWidth < 768) {
                     setMovies(5);
-                    setMoreMovies(1);
+                    setMoreMovies(2);
                 }
 
     }, [windowWidth]);

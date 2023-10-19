@@ -2,6 +2,7 @@ import React from 'react';
 import './FilterCheckbox.css';
 
 function FilterCheckbox(props) {
+    console.log(props.checked);
     return (
         <div className="filter-checkbox">
             <input className="filter-checkbox__input" type="checkbox" name="checkbox" id="checkbox" onChange={props.onChange} checked={props.checked} />

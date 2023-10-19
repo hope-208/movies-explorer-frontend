@@ -60,6 +60,7 @@ function App() {
           setMessagePopup(err);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   const checkIsToken = useCallback(() => {
@@ -141,6 +142,7 @@ function App() {
     };
   }, [isOpenPopup]);
 
+
   function handleSignUp(userData) {
     setIsLoading(true);
     const { name, password, email } = userData;
@@ -158,7 +160,7 @@ function App() {
         console.log(err);
         setMessageError(err);
         setMessagePopup("Что-то пошло не так! Попробуйте ещё раз.");
-        handlePopupError()
+        handlePopupError();
       })
       .finally(() => {
         setIsLoading(false);
@@ -181,6 +183,27 @@ function App() {
         console.log(err);
         setMessageError(err);
         handleLogOut();
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  function handleUpdateUser({ name, email }) {
+    setIsLoading(true);
+    api
+      .editMyProfile({ name, email })
+      .then((data) => {
+        setCurrentUser(data.data);
+        setMessageError('');
+        setMessagePopup("Данные профиля успешно обновлены!");
+        handlePopupSuccess();
+      })
+      .catch((err) => {
+        console.log(err);
+        setMessageError(err);
+        setMessagePopup("Что-то пошло не так! Попробуйте ещё раз.");
+        handlePopupError();
       })
       .finally(() => {
         setIsLoading(false);
@@ -229,6 +252,9 @@ function App() {
     }
     const searchIsChecked = evt.target.checked;
     setSearch((value) => ({ ...value, isChecked: searchIsChecked }));
+
+    // console.log(search.isChecked);
+    // console.log(localStorage.getItem("searchIsChecked"));
   }
 
   function handleInputSeach(evt) {
@@ -239,6 +265,7 @@ function App() {
   useEffect(() => {
     const searchAll = localStorage.getItem("searchAll");
     const searchIsChecked = localStorage.getItem("searchIsChecked");
+    // console.log(localStorage.getItem("searchIsChecked"));
     const localStorageMoviesRequest = JSON.parse(localStorage.getItem("moviesRequest"));
     if (searchAll) {
       setSearch((value) => ({ ...value, string: searchAll }));
@@ -246,6 +273,8 @@ function App() {
 
     if (searchIsChecked === true) {
       setSearch((value) => ({ ...value, isChecked: searchIsChecked }));
+      // console.log(search.isChecked);
+      // console.log(localStorage.getItem("searchIsChecked"));
     }
 
     if (localStorageMoviesRequest) {
@@ -266,10 +295,13 @@ function App() {
   function handleValueCheckboxSavedMovies(evt) {
     const searchIsChecked = evt.target.checked;
     setSearchSavedMovies((value) => ({ ...value, isChecked: searchIsChecked }));
+    // console.log(searchSavedMovies.isChecked);
+    // console.log(localStorage.getItem("searchIsChecked"));
   }
 
   function handleInputSeachSavedMovies(evt) {
     const searchString = evt.target.value;
+    // console.log(searchSavedMovies.isChecked);
     setSearchSavedMovies((value) => ({ ...value, string: searchString }));
   }
 
@@ -289,37 +321,16 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchSavedMovies.isChecked]);
 
-  function handleUpdateUser({ name, email }) {
-    setIsLoading(true);
-    api
-      .editMyProfile({ name, email })
-      .then((data) => {
-        setCurrentUser(data.data);
-        setMessageError('');
-        setMessagePopup("Данные профиля успешно обновлены!");
-        handlePopupSuccess();
-      })
-      .catch((err) => {
-        console.log(err);
-        setMessageError(err);
-        setMessagePopup("Что-то пошло не так! Попробуйте ещё раз.");
-        handlePopupError();
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }
-
   function handleClickButtonSavedMovie(movie) {
     setIsLoading(true);
     console.log(savedMovies);
     console.log(movie);
     console.log(typeof movie);
-    debugger
+
     api
       .addMovie(movie)
       .then((data) => {
-        debugger
+
         console.log('addMovie data', data);
         console.log('savedMovies', savedMovies);
         setSavedMovies(savedMovies);
@@ -328,7 +339,7 @@ function App() {
       .catch((err) => { })
       .finally(() => {
         console.log(savedMovies);
-        debugger
+
         setIsLoading(false);
       });
   }

@@ -14,10 +14,10 @@ function MoviesCardList(props) {
     function defineStatusSaved(movie) {
         //     console.log(movie);
         //     console.log(props.savedMovies);
-        debugger
+
         return props.savedMovies.some((card) => {
             // console.log(card);
-            debugger
+
             if (card.movieId === movie.id) {
                 movie._id = card._id;
                 return true;

@@ -76,7 +76,7 @@
 
 .form__input_edit {
     width: 100%;
-    padding: 0;
+    padding: 0 2px 0 0;
     border: none;
     background: transparent;
     color: #FFF;

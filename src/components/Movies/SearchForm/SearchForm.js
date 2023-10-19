@@ -8,17 +8,18 @@ import Input from '../../Form/Input/Input';
 
 function SearchForm(props) {
     const [error, setError] = useState("");
-    const [searchMovie, setSearchMovie] = useState("");
+    const [keyWordSearchMovie, setKeyWordSearchMovie] = useState(props.searchString);
 
     function handleError(evt) {
         setError(evt.target.validationMessage);
-        setSearchMovie(evt.target.value);
+        setKeyWordSearchMovie(evt.target.value);
         props.handleInput(evt);
     }
 
     const handleSubmit = (evt) => {
+        console.log(keyWordSearchMovie);
         evt.preventDefault();
-        if (searchMovie === '') {
+        if (keyWordSearchMovie === '') {
             return setError("Нужно ввести ключевое слово.")
         }
         props.onSubmit();

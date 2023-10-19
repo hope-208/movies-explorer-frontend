@@ -4,6 +4,11 @@
     margin-top: -10px;
 }
 
+.form__error-edit {
+    margin-top: 5px;
+    text-align: right;
+}
+
 .form__error-search {
     display: flex;
     width: 100%;

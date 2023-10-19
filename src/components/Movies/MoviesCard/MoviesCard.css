@@ -67,8 +67,9 @@
 
 .element__title {
     display: block;
-    align-self: center;
-    width: 90%;
+    max-width: 260px;
+    width: 100%;
+    align-self: center;    
     margin: 0;
     padding: 0 0 17px 0;
     margin-block: 0;
@@ -86,14 +87,15 @@
 }
 
 .element__duration {
-    display: block;
-    align-self: center;
-    width: 90%;
+    display: block;    
+    max-width: 260px;
+    width: 100%;
     margin: 0;
     padding: 0;
     margin-block: 0;
     margin-inline: 0;
     border-radius: 0;
+    align-self: center;
     box-sizing: border-box;
     color: #8B8B8B;
     font-size: 11px;
@@ -138,11 +140,13 @@
     }
 
     .element__title {
+        max-width: 240px;
         padding: 0 0 14px 0;
         font-size: 12px;
     }
 
     .element__duration {
+        max-width: 240px;
         font-size: 10px;
     }
 }

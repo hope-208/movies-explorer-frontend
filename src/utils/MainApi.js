@@ -57,7 +57,7 @@ class Api {
     }
 
     addMovie(data) {
-        debugger
+
         console.log('addMovie', data);
         console.log('addMovie movieId', data.id);
         return fetch(`${this._baseUrl}/movies`, {

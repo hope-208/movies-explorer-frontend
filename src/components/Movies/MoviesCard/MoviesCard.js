@@ -18,9 +18,9 @@ function MoviesCard(props) {
     // console.log(props.defineStatusSaved);
     function handleButtonSaveMovieClick() {
         // console.log(props.card);
-        // debugger
+        // 
         props.handleClickButtonSavedMovie(props.card);
-        // debugger
+        // 
         // console.log(props);
     }
 

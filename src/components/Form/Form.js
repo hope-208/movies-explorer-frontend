@@ -2,8 +2,9 @@ import React from 'react';
 import './Form.css';
 
 function Form(props) {
-    let formClassName = props.isLoggedIn.isLoggedIn ? 'form form_edit' : 'form';
-    let formTitleClassName = props.isLoggedIn.isLoggedIn ? 'form__title form__title_edit' : 'form__title';
+
+    let formClassName = props.isLoggedIn ? 'form form_edit' : 'form';
+    let formTitleClassName = props.isLoggedIn ? 'form__title form__title_edit' : 'form__title';
 
     return (
         <form

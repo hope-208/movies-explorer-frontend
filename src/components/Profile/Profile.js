@@ -33,16 +33,18 @@ function Profile(props) {
             email: email,
         });
     }
-
+    console.log(!isValid ||
+        checkRegexEmail(email).invalid ||
+        checkRegexName(name).invalid || ((currentUser.name === values.name) && (currentUser.email === values.email)));
     return (
         <>
             <Header main={props.main} authForm={props.authForm} isLoggedIn={props.isLoggedIn} />
             <main className="main">
                 <Form formName="profile" isLoggedIn={props.isLoggedIn} onSubmit={handleSubmit} formTitle={`Привет, ${currentUser.name}!`} >
                     <Input name="name" type="text" title="Имя" minLength="2" maxLength="30" isLoggedIn={props.isLoggedIn} placeholder="Введите имя." onChange={handleChange} value={values.name} />
-                    <Error textError={errors.name || checkRegexName(name).message} />
+                    <Error classNameError="form__error form__error-edit" textError={errors.name || checkRegexName(name).message} />
                     <Input name="email" type="email" title="E-mail" isLoggedIn={props.isLoggedIn} placeholder="Введите электронную почту." onChange={handleChange} value={values.email} />
-                    <Error textError={errors.email || checkRegexEmail(email).message} />
+                    <Error classNameError="form__error form__error-edit" textError={errors.email || checkRegexEmail(email).message} />
                     <div className='form__footer form__footer-edit'>
                         <Error textError={props.messageError} />
                         <Button
