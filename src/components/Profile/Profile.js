@@ -13,15 +13,9 @@ function Profile(props) {
     const { values, handleChange, errors, isValid, resetForm, setValues } =
         useFormWithValidation();
 
-    //const [isEdit, setIsEdit] = useState(false);
-    //const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const { name, email } = values;
 
     const currentUser = useContext(CurrentUserContext);
-
-
-
-    //const buttonTitle = isEdit === false ? 'Редактировать' : 'Сохранить';
 
     useEffect(() => {
         resetForm();
@@ -29,32 +23,15 @@ function Profile(props) {
             name: currentUser.name,
             email: currentUser.email,
         });
-        // setIsEdit(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentUser]);
-    console.log(values.name);
-    console.log(currentUser.name);
-    // useEffect(() => {
-    //     setIsButtonDisabled(false);
-    // }, [isEdit, setValues]);
 
     function handleSubmit(e) {
         e.preventDefault();
-        // e.target.className = "button-edit_disabled";
         props.onUpdateUser({
             name: name,
             email: email,
         });
-        // if (values.name !== '' || values.email !== '') {
-        //     if ((currentUser.name !== values.name) || (currentUser.email !== values.email)) {
-        //         props.onUpdateUser({
-        //             name: name,
-        //             email: email,
-        //         });
-        //     }
-        // } else {
-        //     return;
-        // }
     }
 
     return (
@@ -71,10 +48,10 @@ function Profile(props) {
                         <Button
                             buttonTitle={(!isValid ||
                                 checkRegexEmail(email).invalid ||
-                                checkRegexName(name).invalid) || (currentUser.name === values.name) && (currentUser.email === values.email) ? "Редактировать" : "Сохранить"}
+                                checkRegexName(name).invalid) || ((currentUser.name === values.name) && (currentUser.email === values.email)) ? "Редактировать" : "Сохранить"}
                             type="submit" buttonName="edit" buttonClassName="button-edit" onClick={handleSubmit} disabled={!isValid ||
                                 checkRegexEmail(email).invalid ||
-                                checkRegexName(name).invalid || (currentUser.name === values.name) && (currentUser.email === values.email) ? true : false} />
+                                checkRegexName(name).invalid || ((currentUser.name === values.name) && (currentUser.email === values.email)) ? true : false} />
                         <p className="form__span">
                             <Link to="/" className="form__link form__link_out" replace onClick={props.onSignOut}>Выйти из аккаунта</Link>
                         </p>

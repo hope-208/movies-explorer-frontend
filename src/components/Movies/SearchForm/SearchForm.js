@@ -23,7 +23,7 @@ function SearchForm(props) {
         }
         props.onSubmit();
     };
-
+    console.log(error);
     return (
         <section className="search-form" aria-label="Блок поиска фильмов.">
             <Form formName="search" isLoggedIn={props.isLoggedIn} onSubmit={handleSubmit}>

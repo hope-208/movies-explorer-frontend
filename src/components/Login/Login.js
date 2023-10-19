@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import Form from '../Form/Form';
 import Input from '../Form/Input/Input';
 import Error from '../Form/Error/Error';
@@ -8,6 +8,15 @@ import { useFormWithValidation } from "../../utils/useFormWithValidation.js";
 import { checkRegexEmail } from "../../utils/utils.js";
 
 function Login(props) {
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (props.isLoggedIn) {
+            navigate("/");
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.isLoggedIn]);
 
     const { values, handleChange, errors, isValid } =
         useFormWithValidation();
