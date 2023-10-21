@@ -55,7 +55,9 @@ function Register(props) {
             <Error textError={errors.password} />
             <div className='form__footer'>
                 <Error textError={props.messageError} />
-                <Button buttonClassName="button-sign button-sign-up" type="submit" buttonName="signup" buttonTitle={props.isLoading.isLoading ? 'Регистрация...' : 'Зарегистрироваться'} disabled={!isValid} />
+                <Button buttonClassName="button-sign button-sign-up" type="submit" buttonName="signup"
+                    buttonTitle={props.isLoading.isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
+                    disabled={!isValid || checkRegexName(userName).isValid || checkRegexEmail(email).isValid} />
                 <p className="form__span">Уже зарегистрированы?
                     <Link to="/signin" className="form__link" replace>Войти</Link>
                 </p>

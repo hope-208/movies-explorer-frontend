@@ -7,5 +7,5 @@ export const MY_ADAPYIVE_WEBSITE = 'https://hope-208.github.io/russian-travel';
 export const MY_SPA_WEBSITE = 'https://hope-208.github.io/mesto';
 export const WEBSITE_OF_YA_PRACTICUM = 'https://practicum.yandex.ru';
 export const REPOSITORY_OF_THIS_WEBSITE = 'https://github.com/hope-208/movies-explorer-frontend';
-export const REGEX_EMAIL = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/i;
+export const REGEX_EMAIL = /^(([^<>()[\]\\.,;:\s@\\""]+(\.[^<>()[\]\\.,;:\s@\\""]+)*)|("".+""))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 export const REGEX_NAME = /^[A-ZА-ЯЁ\s-]+$/i;

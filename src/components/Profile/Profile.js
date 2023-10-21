@@ -47,11 +47,11 @@ function Profile(props) {
                         <Error textError={props.messageError} />
                         <Button
                             buttonTitle={(!isValid ||
-                                checkRegexEmail(email).invalid ||
-                                checkRegexName(name).invalid) || ((currentUser.name === values.name) && (currentUser.email === values.email)) ? "Редактировать" : "Сохранить"}
+                                checkRegexEmail(email).isValid ||
+                                checkRegexName(name).isValid) || ((currentUser.name === values.name) && (currentUser.email === values.email)) ? "Редактировать" : "Сохранить"}
                             type="submit" buttonName="edit" buttonClassName="button-edit" onClick={handleSubmit} disabled={!isValid ||
-                                checkRegexEmail(email).invalid ||
-                                checkRegexName(name).invalid || ((currentUser.name === values.name) && (currentUser.email === values.email)) ? true : false} />
+                                checkRegexEmail(email).isValid ||
+                                checkRegexName(name).isValid || ((currentUser.name === values.name) && (currentUser.email === values.email)) ? true : false} />
                         <p className="form__span">
                             <Link to="/" className="form__link form__link_out" replace onClick={props.onSignOut}>Выйти из аккаунта</Link>
                         </p>

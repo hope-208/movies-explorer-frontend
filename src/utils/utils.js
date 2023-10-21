@@ -2,21 +2,21 @@ import { REGEX_EMAIL, REGEX_NAME } from "../utils/constants.js";
 
 function checkRegexEmail(value) {
     if (value === undefined) {
-        return { message: "", invalid: true }
+        return { message: "", isValid: true }
     }
 
     if (!REGEX_EMAIL.test(value)) {
-        return { message: "Некорректный адрес электронной почты", invalid: true }
+        return { message: "Некорректный адрес электронной почты", isValid: true }
     }
-    return { message: "", invalid: false }
+    return { message: "", isValid: false }
 }
 
 function checkRegexName(value) {
 
     if (!REGEX_NAME.test(value)) {
-        return { message: "Имя пользователя может содержать только латиницу, кириллицу, дефис и пробел.", invalid: true }
+        return { message: "Имя пользователя может содержать только латиницу, кириллицу, дефис и пробел.", isValid: true }
     }
-    return { message: "", invalid: false }
+    return { message: "", isValid: false }
 }
 
 function filtredMoviesInSeachResult(movies, searchData) {
