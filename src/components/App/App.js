@@ -248,16 +248,11 @@ function App() {
   }
 
   function handleValueCheckbox(evt) {
-    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ localStorage.getItem('searchIsChecked'):", localStorage.getItem('searchIsChecked'))
     if (search.string === "") {
       return;
     }
     const searchIsChecked = evt.target.checked;
-    console.log("🚀 ~ file: App.js:255 ~ handleValueCheckbox ~ searchIsChecked:", searchIsChecked)
-    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ search.isChecked:", search.isChecked)
     setSearch((value) => ({ ...value, isChecked: searchIsChecked }));
-    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ search.isChecked:", search.isChecked)
-    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ localStorage.getItem('searchIsChecked'):", localStorage.getItem('searchIsChecked'))
   }
 
   function handleInputSeach(evt) {
@@ -285,7 +280,6 @@ function App() {
     if (localStorageMoviesRequest) {
       setMovies(localStorageMoviesRequest);
     }
-    console.log(search);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
