@@ -96,6 +96,7 @@ function App() {
 
   function handleClearedMessageErrors() {
     setMessageError('');
+    setTextSearchError('');
   }
 
   useEffect(() => {
@@ -233,7 +234,7 @@ function App() {
 
     if (localStorageAllFilms) {
       const filtredMoviesSearch = filtredMoviesInSeachResult(localStorageAllFilms, search);
-      if (filtredMoviesSearch.length < 1) {
+      if (filtredMoviesSearch.length === 0) {
         setTextSearchError("Ничего не найдено.");
       }
       setMovies(filtredMoviesSearch);
@@ -355,7 +356,7 @@ function App() {
     setCurrentUser({});
     setSearch({ string: "", isChecked: false });
     setMessagePopup("");
-    setTextSearchError("");
+    handleClearedMessageErrors();
     setMovies([]);
   }
   return (
