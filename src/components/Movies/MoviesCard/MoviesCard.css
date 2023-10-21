@@ -59,6 +59,8 @@
 
 .element__caption-container {
     display: flex;
+    max-width: 290px;
+    margin: 0 auto 0 0;
     width: 100%;
     flex-direction: column;
     justify-content: center;
@@ -67,7 +69,6 @@
 
 .element__title {
     display: block;
-    max-width: 260px;
     width: 100%;
     align-self: center;    
     margin: 0;
@@ -88,7 +89,6 @@
 
 .element__duration {
     display: block;    
-    max-width: 260px;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -111,6 +111,11 @@
     .element {
         grid: 190px 72px / 339px;
     }
+
+    .element__caption-container {
+        max-width: 260px;
+    }
+
     .element__caption {
         gap: 21px;
     }
@@ -134,19 +139,21 @@
         max-width: 300px;
         max-height: 237px;
     }
-    .element__caption {
-        gap: 6px;
+    .element__caption {        
         padding: 14px;
+        gap: 6px;        
+    }
+
+    .element__caption-container {
+        max-width: 240px;
     }
 
     .element__title {
-        max-width: 240px;
         padding: 0 0 14px 0;
         font-size: 12px;
     }
 
     .element__duration {
-        max-width: 240px;
         font-size: 10px;
     }
 }

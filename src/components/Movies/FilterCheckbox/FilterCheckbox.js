@@ -12,7 +12,6 @@ function FilterCheckbox(props) {
         props.onChange(evt);
     }
 
-
     return (
         <div className="filter-checkbox">
             <input
@@ -21,7 +20,7 @@ function FilterCheckbox(props) {
                 name="checkbox"
                 id="checkbox"
                 onChange={handleClickCheckbox}
-                checked={isChecked} />
+                value={isChecked} />
             <label className="filter-checkbox__label" htmlFor="checkbox"></label>
             <span className="filter-checkbox__text">Короткометражки</span>
         </div>

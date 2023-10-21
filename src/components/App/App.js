@@ -38,7 +38,7 @@ function App() {
 
   const [searchSavedMovies, setSearchSavedMovies] = React.useState({
     string: "",
-    isChecked: localStorage.getItem("searchIsChecked")
+    isChecked: false
   });
 
   const [moviesSearchResult, setMoviesSearchResult] = useState([]);
@@ -243,8 +243,6 @@ function App() {
       setIsLoading(false);
       return;
     }
-
-
   }
 
   function handleValueCheckbox(evt) {
@@ -300,9 +298,6 @@ function App() {
   }, [searchSavedMovies.isChecked]);
 
   function handleSearchSavedMovies() {
-    if (searchSavedMovies.string === "") {
-      return;
-    }
     setIsLoading(true);
     const filtredMoviesSearch = filtredMoviesInSeachResult(savedMovies, searchSavedMovies);
     if (filtredMoviesSearch.length === 0) {
@@ -350,6 +345,7 @@ function App() {
 
   function handleSignOut() {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('beatfilmMovies');
     localStorage.removeItem('searchAll');
     localStorage.removeItem('searchIsChecked');
     localStorage.removeItem('moviesRequest');
@@ -456,7 +452,7 @@ function App() {
           }
         />
         <Route
-          path="*"
+          path="/*"
           element={<div className="App">
             {<main className="main">
               <NotFound notFound={true} />
