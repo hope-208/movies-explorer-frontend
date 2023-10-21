@@ -79,5 +79,10 @@
       gap: 16px;
       max-width: 282px;
     }
+
+    .popup__title {
+      max-width: 282px;
+      font-size: 18px;
+    }
   }
   

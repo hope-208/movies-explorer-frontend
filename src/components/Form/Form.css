@@ -132,11 +132,11 @@
 
     .form__footer {
         position: sticky;
-        margin: 0 0 30px;
+        margin: 175px 0 30px;
     }
 
     .form__footer-edit {
-        margin: auto 0 40px;
+        margin: 345px 0 40px;
     }
 
     .form__span, .form__link {

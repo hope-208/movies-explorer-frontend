@@ -132,6 +132,10 @@
 }
 
 @media (max-width: 767px) {
+    .form__label_edit {
+        max-width: 101px;
+    }
+
     .search__input {
         max-width: 292px;
     }
