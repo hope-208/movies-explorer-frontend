@@ -8,29 +8,27 @@ import Input from '../../Form/Input/Input';
 
 function SearchForm(props) {
     const [error, setError] = useState("");
-    const [keyWordSearchMovie, setKeyWordSearchMovie] = useState('');
+    const [keyWordSearchMovie, setKeyWordSearchMovie] = useState(props.searchString);
 
     function handleError(evt) {
-
         setKeyWordSearchMovie(evt.target.value);
         setError(evt.target.validationMessage);
         props.handleInput(evt);
     }
 
     const handleSubmit = (evt) => {
-
-
         evt.preventDefault();
         if (keyWordSearchMovie === '') {
             return setError("Нужно ввести ключевое слово.")
         }
         props.onSubmit();
     };
+
     return (
         <section className="search-form" aria-label="Блок поиска фильмов.">
             <Form formName="search" onSubmit={handleSubmit}>
                 <div className="search__container">
-                    <Input name="search" type="search" title="Введите ключевое(ые) слово(а) для поиска." placeholder="Фильм" isLoggedIn={props.isLoggedIn} onChange={handleError} minLength={1} value={props.searchString} />
+                    <Input name="search" type="search" title="Введите ключевое(ые) слово(а) для поиска." placeholder="Фильм" isLoggedIn={props.isLoggedIn} onChange={handleError} minLength={1} value={keyWordSearchMovie} />
                     <Error classNameError="form__error form__error-search" textError={error || ""} />
                     <Button buttonClassName="search__submit" type="submit" />
                 </div>

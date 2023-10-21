@@ -37,7 +37,7 @@ function MoviesCardList(props) {
                                 ? (props.movies.slice(0, moviesList).map((card) =>
                                 (
                                     <MoviesCard
-                                        key={`${pathname === "/saved-movies" ? card._id : card.id}`}
+                                        key={card.id}
                                         card={card}
                                         handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
                                         handleDeleteMovie={props.handleDeleteMovie}
@@ -49,7 +49,7 @@ function MoviesCardList(props) {
                                     props.movies.map((card) =>
                                     (
                                         <MoviesCard
-                                            key={`${pathname === "/saved-movies" ? card._id : card.id}`}
+                                            key={card._id}
                                             card={card}
                                             handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
                                             handleDeleteMovie={props.handleDeleteMovie}

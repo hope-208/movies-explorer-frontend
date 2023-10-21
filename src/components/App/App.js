@@ -33,12 +33,12 @@ function App() {
 
   const [search, setSearch] = React.useState({
     string: "",
-    isChecked: false
+    isChecked: localStorage.getItem("searchIsChecked")
   });
 
   const [searchSavedMovies, setSearchSavedMovies] = React.useState({
     string: "",
-    isChecked: false
+    isChecked: localStorage.getItem("searchIsChecked")
   });
 
   const [moviesSearchResult, setMoviesSearchResult] = useState([]);
@@ -219,11 +219,11 @@ function App() {
       if (filtredMoviesSearch.length < 1) {
         setTextSearchError("Ничего не найдено.");
       }
-      setIsLoading(false);
       setMovies(filtredMoviesSearch);
       localStorage.setItem("searchAll", search.string);
       localStorage.setItem("searchIsChecked", search.isChecked);
       localStorage.setItem("moviesRequest", JSON.stringify(filtredMoviesSearch));
+      setIsLoading(false);
       return;
     }
 
@@ -248,6 +248,7 @@ function App() {
     }
     const searchIsChecked = evt.target.checked;
     setSearch((value) => ({ ...value, isChecked: searchIsChecked }));
+
   }
 
   function handleInputSeach(evt) {
@@ -255,9 +256,10 @@ function App() {
     setSearch((value) => ({ ...value, string: searchString }));
   }
 
-  // useEffect(() => {
-  //   handleSearchMovies();
-  // }, [search, searchSavedMovies]);
+  useEffect(() => {
+    handleSearchMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [search.isChecked]);
 
   useEffect(() => {
     const searchAll = localStorage.getItem("searchAll");
@@ -290,16 +292,17 @@ function App() {
   useEffect(() => {
     handleSearchSavedMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchSavedMovies.isChecked, search.isChecked]);
+  }, [searchSavedMovies.isChecked]);
 
   function handleSearchSavedMovies() {
+    if (searchSavedMovies.string === "") {
+      return;
+    }
     setIsLoading(true);
     const filtredMoviesSearch = filtredMoviesInSeachResult(savedMovies, searchSavedMovies);
-
-    if (filtredMoviesSearch.length < 1) {
+    if (filtredMoviesSearch.length === 0) {
       setTextSearchError("Ничего не найдено.");
     }
-
     setMoviesSearchResult(filtredMoviesSearch);
     setIsLoading(false);
   }
@@ -314,18 +317,21 @@ function App() {
     setSearchSavedMovies((value) => ({ ...value, string: searchString }));
   }
 
+  useEffect(() => {
+    handleSearchSavedMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchSavedMovies.isChecked]);
+
   async function handleClickButtonSavedMovie(movie) {
-    setIsLoading(true);
     try {
       const newSavedMovie = await api.addMovie(movie);
       if (newSavedMovie) {
-        setMoviesSearchResult([...savedMovies, newSavedMovie]);
-        setSavedMovies([...savedMovies, newSavedMovie]);
+        setMoviesSearchResult([...savedMovies, newSavedMovie.data]);
+        setSavedMovies([...savedMovies, newSavedMovie.data]);
       };
     } catch (err) {
       console.log(err);
     };
-    setIsLoading(false);
   }
 
   function handleDeleteMovie(movie) {
@@ -351,7 +357,6 @@ function App() {
     setTextSearchError("");
     setMovies([]);
   }
-
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>
@@ -446,7 +451,7 @@ function App() {
           }
         />
         <Route
-          path="/*"
+          path="*"
           element={<div className="App">
             {<main className="main">
               <NotFound notFound={true} />

@@ -13,10 +13,12 @@ function Movies(props) {
                     handleInput={props.handleInput} onChange={props.onChange}
                     checked={props.checked} searchString={props.searchString} />
                 <MoviesCardList buttonName="like" movies={props.movies}
-                    savedMovies={props.savedMovies} isLoading={props.isLoading}
+                    savedMovies={props.savedMovies}
+                    isLoading={props.isLoading}
                     handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
                     handleDeleteMovie={props.handleDeleteMovie}
-                    messageError={props.messageError} buttonShowMore={props.buttonShowMore} />
+                    messageError={props.messageError}
+                    buttonShowMore={props.buttonShowMore} />
             </main>
             <Footer />
         </>
