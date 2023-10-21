@@ -212,6 +212,23 @@ function App() {
     }
     setIsLoading(true);
 
+    if (!localStorage.getItem("beatfilmMovies")) {
+
+      moviesApi
+        .getAllMovies()
+        .then((data) => {
+          localStorage.setItem("beatfilmMovies", JSON.stringify(data));
+          handleSearchMovies();
+        })
+        .catch((err) => {
+          console.log(err);
+          setTextSearchError("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.");
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+
     const localStorageAllFilms = JSON.parse(localStorage.getItem("beatfilmMovies"));
 
     if (localStorageAllFilms) {
@@ -227,28 +244,20 @@ function App() {
       return;
     }
 
-    moviesApi
-      .getAllMovies()
-      .then((data) => {
-        localStorage.setItem("beatfilmMovies", JSON.stringify(data));
-        handleSearchMovies();
-      })
-      .catch((err) => {
-        console.log(err);
-        setTextSearchError("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+
   }
 
   function handleValueCheckbox(evt) {
+    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ localStorage.getItem('searchIsChecked'):", localStorage.getItem('searchIsChecked'))
     if (search.string === "") {
       return;
     }
     const searchIsChecked = evt.target.checked;
+    console.log("🚀 ~ file: App.js:255 ~ handleValueCheckbox ~ searchIsChecked:", searchIsChecked)
+    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ search.isChecked:", search.isChecked)
     setSearch((value) => ({ ...value, isChecked: searchIsChecked }));
-
+    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ search.isChecked:", search.isChecked)
+    console.log("🚀 ~ file: App.js:258 ~ handleValueCheckbox ~ localStorage.getItem('searchIsChecked'):", localStorage.getItem('searchIsChecked'))
   }
 
   function handleInputSeach(evt) {
@@ -276,6 +285,8 @@ function App() {
     if (localStorageMoviesRequest) {
       setMovies(localStorageMoviesRequest);
     }
+    console.log(search);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
