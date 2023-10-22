@@ -11,7 +11,6 @@ function MoviesCardList(props) {
     const windowWidth = useDefineWindowWidth();
     const { movies: moviesList, useHandleClickShowMore: handleClickShowMore } = useSizeMoviesList(windowWidth);
 
-
     function defineStatusSaved(movie) {
         return props.savedMovies.some((card) => {
             if (card.movieId === movie.id) {
