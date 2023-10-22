@@ -32,7 +32,7 @@ function App() {
   const [savedMovies, setSavedMovies] = useState([]);
 
   const [search, setSearch] = React.useState({
-    string: "",
+    string: localStorage.getItem("searchAll"),
     isChecked: localStorage.getItem("searchIsChecked")
   });
 
@@ -358,6 +358,7 @@ function App() {
     handleClearedMessageErrors();
     setMovies([]);
   }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <Routes>

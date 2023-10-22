@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './FilterCheckbox.css';
 
 function FilterCheckbox(props) {
-    const [isChecked, setIsChecked] = useState(false);
-
-    useEffect(() => {
-        setIsChecked(Boolean(props.checked));
-    }, [props.checked]);
-
+    const [isChecked, setIsChecked] = useState(Boolean(props.checked) || false);
     function handleClickCheckbox(evt) {
         props.onChange(evt);
+        setIsChecked(evt.target.checked);
     }
+
+    // useEffect(() => {
+    //     setIsChecked(Boolean(props.checked));
+    // }, [props.checked])
 
     return (
         <div className="filter-checkbox">
@@ -19,8 +19,8 @@ function FilterCheckbox(props) {
                 type="checkbox"
                 name="checkbox"
                 id="checkbox"
-                onChange={handleClickCheckbox}
-                value={isChecked} />
+                defaultChecked={isChecked || false}
+                onChange={handleClickCheckbox} />
             <label className="filter-checkbox__label" htmlFor="checkbox"></label>
             <span className="filter-checkbox__text">Короткометражки</span>
         </div>
