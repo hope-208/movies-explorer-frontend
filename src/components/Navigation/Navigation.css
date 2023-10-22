@@ -244,13 +244,18 @@
     width: 23px;
   }
 
+  .hamburger__line-middle {
+    margin: 5px auto;
+}
+
   .hamburger-button:checked + .hamburger .hamburger__line-top {
     width: 26px;
-    margin-left: 0;
+    margin-left: 0;    
   }
 
   .hamburger-button:checked + .hamburger .hamburger__line-bottom {
     width: 26px;
+    margin-top: -17px;
   }
 
   .nav__container {

@@ -55,7 +55,6 @@ function App() {
           setCurrentUser(data);
           if (res) {
             handleLogin();
-            navigate('/movies', { replace: true });
             api
               .getProfileInfo()
               .then((data) => {
@@ -456,7 +455,7 @@ function App() {
           path="/*"
           element={<div className="App">
             {<main className="main">
-              <NotFound notFound={true} />
+              <NotFound />
             </main>}
           </div>
           }
