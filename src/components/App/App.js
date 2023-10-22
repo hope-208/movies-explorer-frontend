@@ -78,6 +78,7 @@ function App() {
   let { location } = useLocation();
 
   const savedMoviesPage = location === "/saved-movies";
+  const moviesPage = location === "/movies";
 
   useEffect(() => {
     checkIsToken();
@@ -92,15 +93,6 @@ function App() {
   function handleLogOut() {
     setLoggedIn(false);
   }
-
-  function handleClearedMessageErrors() {
-    setMessageError('');
-    setTextSearchError('');
-  }
-
-  useEffect(() => {
-    handleClearedMessageErrors()
-  }, [navigate]);
 
   // popup
   function handlePopupSuccess() {
@@ -233,15 +225,19 @@ function App() {
 
     if (localStorageAllFilms) {
       const filtredMoviesSearch = filtredMoviesInSeachResult(localStorageAllFilms, search);
-      if (filtredMoviesSearch.length === 0) {
-        setTextSearchError("Ничего не найдено.");
-      }
+      handleErrorOnFiltredMovies(filtredMoviesSearch);
       setMovies(filtredMoviesSearch);
       localStorage.setItem("searchAll", search.string);
       localStorage.setItem("searchIsChecked", search.isChecked);
       localStorage.setItem("moviesRequest", JSON.stringify(filtredMoviesSearch));
       setIsLoading(false);
       return;
+    }
+  }
+
+  function handleErrorOnFiltredMovies(filtredMoviesSearch) {
+    if (filtredMoviesSearch.length === 0) {
+      setTextSearchError("Ничего не найдено.");
     }
   }
 
@@ -282,17 +278,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setSearchSavedMovies({
-      string: "",
-      isChecked: false,
-    });
-    if (savedMoviesPage) {
-      handleSearchSavedMovies();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [savedMovies, savedMoviesPage]);
-
-  useEffect(() => {
     handleSearchSavedMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchSavedMovies.isChecked]);
@@ -300,9 +285,7 @@ function App() {
   function handleSearchSavedMovies() {
     setIsLoading(true);
     const filtredMoviesSearch = filtredMoviesInSeachResult(savedMovies, searchSavedMovies);
-    if (filtredMoviesSearch.length === 0) {
-      setTextSearchError("Ничего не найдено.");
-    }
+    handleErrorOnFiltredMovies(filtredMoviesSearch);
     setMoviesSearchResult(filtredMoviesSearch);
     setIsLoading(false);
   }
@@ -320,7 +303,7 @@ function App() {
   useEffect(() => {
     handleSearchSavedMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchSavedMovies.isChecked]);
+  }, [searchSavedMovies.isChecked, savedMovies]);
 
   async function handleClickButtonSavedMovie(movie) {
     try {
@@ -335,13 +318,25 @@ function App() {
   }
 
   function handleDeleteMovie(movie) {
-
     api.deleteMovie(movie._id).then((data) => {
       const newCards = savedMovies.filter((c) => c._id !== movie._id);
       setMoviesSearchResult(newCards);
       setSavedMovies(newCards);
     });
   }
+
+  function handleClearedMessageErrors() {
+    if ((location === moviesPage && search.string === '' && moviesSearchResult.length === 0)
+      || (location === savedMoviesPage && searchSavedMovies.string === '' && moviesSearchResult.length === 0)) {
+      setMessageError('');
+      setTextSearchError('');
+    }
+  }
+
+  useEffect(() => {
+    handleClearedMessageErrors()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
 
   function handleSignOut() {
     localStorage.removeItem('jwt');

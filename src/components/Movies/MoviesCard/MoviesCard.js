@@ -10,7 +10,6 @@ function MoviesCard(props) {
         props.handleClickButtonSavedMovie(props.card);
     }
 
-
     function handleButtonDeleteMovieClick() {
         props.handleDeleteMovie(props.card);
     }

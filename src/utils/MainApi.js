@@ -12,10 +12,6 @@ class Api {
             throw JSON.parse(text).message || JSON.parse(text).error;
 
         });
-        // return res.text().then((text) => {
-        //     throw JSON.parse(text).message || JSON.parse(text).error;
-
-        // });
     }
 
     _loadToken() {
@@ -68,7 +64,6 @@ class Api {
     }
 
     addMovie(data) {
-
         return fetch(`${this._baseUrl}/movies`, {
             method: "POST",
             credentials: 'include',
