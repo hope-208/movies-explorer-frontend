@@ -9,7 +9,7 @@ import { useDefineWindowWidth, useSizeMoviesList } from '../../../utils/SizeMovi
 function MoviesCardList(props) {
     let { pathname } = useLocation();
     const windowWidth = useDefineWindowWidth();
-    const { movies: moviesList, useHandleClickShowMore: handleClickShowMore } = useSizeMoviesList(windowWidth);
+    const { movies: moviesList, useHandleClickShowMore: handleClickShowMore } = useSizeMoviesList(windowWidth, props.handleSearchMovies);
 
     function defineStatusSaved(movie) {
         return props.savedMovies.some((card) => {
@@ -21,7 +21,6 @@ function MoviesCardList(props) {
             }
         });
     }
-
 
     return (
         <>

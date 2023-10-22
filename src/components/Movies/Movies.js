@@ -15,6 +15,7 @@ function Movies(props) {
                 <MoviesCardList buttonName="like" movies={props.movies}
                     savedMovies={props.savedMovies}
                     isLoading={props.isLoading}
+                    handleSearchMovies={props.handleSearchMovies}
                     handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
                     handleDeleteMovie={props.handleDeleteMovie}
                     messageError={props.messageError}

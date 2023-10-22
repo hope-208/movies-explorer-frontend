@@ -420,6 +420,7 @@ function App() {
               messageError={textSearchError}
               searchString={search.string}
               checked={search.isChecked}
+              handleSearchMovies={handleSearchMovies}
               handleClickButtonSavedMovie={handleClickButtonSavedMovie}
               handleDeleteMovie={handleDeleteMovie}
               buttonShowMore={true} />

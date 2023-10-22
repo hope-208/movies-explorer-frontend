@@ -30,7 +30,7 @@ export function useDefineWindowWidth() {
     return windowWidth;
 }
 
-export function useSizeMoviesList(windowWidth) {
+export function useSizeMoviesList(windowWidth, reset) {
 
     const [movies, setMovies] = React.useState(0);
     const [moreMovies, setMoreMovies] = React.useState(0);
@@ -49,12 +49,11 @@ export function useSizeMoviesList(windowWidth) {
                     setMoreMovies(ROW_SIZE_2);
                 }
 
-    }, [windowWidth]);
+    }, [windowWidth, reset]);
 
     function useHandleClickShowMore() {
         setMovies(movies + moreMovies);
     }
-
 
     return { movies, useHandleClickShowMore };
 }
