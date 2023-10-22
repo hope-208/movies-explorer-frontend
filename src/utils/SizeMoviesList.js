@@ -1,4 +1,10 @@
 import React from "react";
+import {
+    LENGHT_MOVIES_LIST_FOR_MORE_1280,
+    LENGHT_MOVIES_LIST_FOR_MORE_768_LESS_1280,
+    LENGHT_MOVIES_LIST_FOR_LESS_768,
+    ROW_SIZE_3, ROW_SIZE_2
+} from "../utils/constants.js";
 
 export function useDefineWindowWidth() {
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -31,16 +37,16 @@ export function useSizeMoviesList(windowWidth) {
 
     React.useEffect(() => {
         if (windowWidth >= 1280) {
-            setMovies(12);
-            setMoreMovies(3);
+            setMovies(LENGHT_MOVIES_LIST_FOR_MORE_1280);
+            setMoreMovies(ROW_SIZE_3);
         } else
             if (windowWidth < 1280 && windowWidth >= 768) {
-                setMovies(8);
-                setMoreMovies(2);
+                setMovies(LENGHT_MOVIES_LIST_FOR_MORE_768_LESS_1280);
+                setMoreMovies(ROW_SIZE_2);
             } else
                 if (windowWidth < 768) {
-                    setMovies(5);
-                    setMoreMovies(2);
+                    setMovies(LENGHT_MOVIES_LIST_FOR_LESS_768);
+                    setMoreMovies(ROW_SIZE_2);
                 }
 
     }, [windowWidth]);

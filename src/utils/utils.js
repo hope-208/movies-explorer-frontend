@@ -1,4 +1,4 @@
-import { REGEX_EMAIL, REGEX_NAME } from "../utils/constants.js";
+import { REGEX_EMAIL, REGEX_NAME, SHORT_MOVIE_DURATION } from "../utils/constants.js";
 
 function checkRegexEmail(value) {
     if (value === undefined) {
@@ -22,7 +22,7 @@ function checkRegexName(value) {
 function filtredMoviesInSeachResult(movies, searchData) {
     if (searchData.isChecked) {
         return movies
-            .filter((movie) => movie.duration <= 40)
+            .filter((movie) => movie.duration <= SHORT_MOVIE_DURATION)
             .filter((movie) =>
                 movie.nameRU
                     .trim()
