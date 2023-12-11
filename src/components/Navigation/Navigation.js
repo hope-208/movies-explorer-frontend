@@ -4,17 +4,9 @@ import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation(props) {
-
     return (
         <nav className="nav">
-            {props.main && (
-                <div className="nav__container before-auth">
-                    <Link className="nav__link nav__link-up" to="/signup">Регистрация</Link>
-                    <Link className="nav__link nav__link-in" to="/signin">Войти</Link>
-                </div>
-            )}
-
-            {props.isLoggedIn && (
+            {props.isLoggedIn ? (
                 <>
                     <input className="hamburger-button" id="hamburger" type="checkbox"></input>
 
@@ -38,6 +30,11 @@ function Navigation(props) {
                         </div>
                     </div>
                 </>
+            ) : (
+                <div className="nav__container before-auth">
+                    <Link className="nav__link nav__link-up" to="/signup">Регистрация</Link>
+                    <Link className="nav__link nav__link-in" to="/signin">Войти</Link>
+                </div>
             )}
         </nav>
     );

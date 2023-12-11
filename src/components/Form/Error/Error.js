@@ -3,7 +3,7 @@ import './Error.css';
 
 function Error(props) {
     return (
-        <span className="form__error">{props.textError}</span>
+        <span className={props.classNameError || "form__error"}>{props.textError}</span>
     );
 }
 

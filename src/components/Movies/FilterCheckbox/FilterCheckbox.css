@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 47px 0 70px;
+  padding: 32px 0 70px;
   border-bottom: 1px solid #424242;
   box-sizing: border-box;
 }
@@ -42,9 +42,11 @@ input[type=checkbox] {
 }
 
 .filter-checkbox__input:checked + .filter-checkbox__label:after {
+  
   left: calc(100% - 2px);
   transform: translateX(-100%);
 }
+
 
 .filter-checkbox__label:active:after {
   width: 18px;
@@ -59,7 +61,7 @@ input[type=checkbox] {
 
 @media (max-width: 1230px) {
   .filter-checkbox {
-    padding: 47px 0 50px;
+    padding: 32px 0 50px;
   }
 }
 

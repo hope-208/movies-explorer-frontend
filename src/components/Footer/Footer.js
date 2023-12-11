@@ -1,6 +1,6 @@
 import React from 'react';
 import './Footer.css';
-import { WEBSITE_OF_YA_PRACTICUM, REPOSITORY_OF_THIS_WEBSITE } from '../../utils/utils.js';
+import { WEBSITE_OF_YA_PRACTICUM, REPOSITORY_OF_THIS_WEBSITE } from '../../utils/constants.js';
 
 function Footer() {
     return (

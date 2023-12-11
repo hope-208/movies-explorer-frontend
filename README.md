@@ -4,6 +4,9 @@
 ## Ссылка на сайт
 https://movies-explorer-hope-208.nomoredomainsicu.ru 
 
+## Ссылка на пул-реквест
+[https://github.com/hope-208/movies-explorer-frontend/pull/2](https://github.com/hope-208/movies-explorer-frontend/pull/2)
+
 ## Выбранный макет: dark-3
 Ссылка на макет в Figma: https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=1-8436&mode=design&t=oKf4hgp6RjsXS7Z1-0 
 

@@ -1,33 +1,41 @@
-import { useState } from 'react';
+
+import { useLocation } from "react-router-dom";
 import Button from '../../Button/Button';
 import './MoviesCard.css';
 
 function MoviesCard(props) {
+    let { pathname } = useLocation();
 
-    const [isLiked, setIsLiked] = useState(props.card.isLiked);
-    const cardLikeButtonClassName = `button-like ${isLiked && 'button-like_active'
-        }`;
-
-    function handleLikeClick() {
-        setIsLiked(!isLiked);
+    function handleButtonSaveMovieClick() {
+        props.handleClickButtonSavedMovie(props.card);
     }
 
-    function handleDeleteClick() {
+    function handleButtonDeleteMovieClick() {
+        props.handleDeleteMovie(props.card);
     }
 
     return (
         <article className="element">
-            <img
-                className="element__cover"
-                src={props.card.image}
-                alt={props.card.nameRU}
-            />
+            <a className="element__link" href={props.card.trailerLink} target="_blank" rel="noopener noreferrer">
+                <img
+                    className="element__cover"
+                    src={`${pathname === "/saved-movies"
+                        ? props.card.image
+                        : (`https://api.nomoreparties.co/${props.card.image.url}`)
+                        } `}
+                    alt={props.card.nameRU}
+                /></a>
             <div className="element__caption">
                 <div className="element__caption-container">
                     <h2 className="element__title">{props.card.nameRU}</h2>
                     <p className="element__duration">{props.card.duration / 60 | 0}ч {props.card.duration % 60}м</p>
                 </div>
-                <Button buttonClassName={props.buttonName === 'like' ? cardLikeButtonClassName : props.buttonClassName} buttonName={props.buttonName} buttonTitle={props.buttonTitle} onClick={() => { props.buttonName === 'like' ? handleLikeClick() : handleDeleteClick() }} />
+
+
+                {pathname === "/movies" && props.defineStatusSaved === false && <Button buttonClassName='button-like' buttonName={props.buttonName} type="button" onClick={handleButtonSaveMovieClick} />}
+                {pathname === "/saved-movies" && <Button buttonClassName="button-delete" buttonName={props.buttonName} type="button" onClick={handleButtonDeleteMovieClick} />}
+
+                {props.defineStatusSaved === true && pathname === "/movies" && <Button buttonClassName='button-like button-like_active' buttonName={props.buttonName} type="button" onClick={handleButtonDeleteMovieClick} />}
             </div>
         </article>
     );

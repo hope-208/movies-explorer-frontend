@@ -76,7 +76,7 @@
 
 .form__input_edit {
     width: 100%;
-    padding: 0;
+    padding: 0 2px 0 0;
     border: none;
     background: transparent;
     color: #FFF;
@@ -104,4 +104,39 @@
     box-shadow: none;
     border-radius: 0;
     border-bottom: 1px solid #EE3465;
+}
+
+.search__input {
+    max-width: 1140px;
+    width: 100%;
+    position: absolute;
+    margin: 0 auto;
+    border: none;
+    border-radius: 40px;
+    background: #2F2F2F;
+    padding: 14px 86px 14px 22px;
+    color: #FFF;
+    font-size: 13px;
+    line-height: 17px; /* 130.769% */
+    box-sizing: border-box;
+}
+
+.search__input::placeholder {
+    color: #8B8B8B;
+}
+
+@media (max-width: 1230px)  {
+    .search__input {
+        max-width: 708px;
+    }
+}
+
+@media (max-width: 767px) {
+    .form__label_edit {
+        max-width: 101px;
+    }
+
+    .search__input {
+        max-width: 292px;
+    }
 }

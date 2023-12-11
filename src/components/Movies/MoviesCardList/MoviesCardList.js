@@ -1,42 +1,71 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useLocation } from "react-router-dom";
 import './MoviesCardList.css';
 import Preloader from '../../Preloader/Preloader.js';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Button from '../../Button/Button';
+import { useDefineWindowWidth, useSizeMoviesList } from '../../../utils/SizeMoviesList.js';
 
 function MoviesCardList(props) {
-    const [isLoading, setIsLoading] = useState(false);
-    const [isButtonShow, setIsButtonShow] = useState(true);
+    let { pathname } = useLocation();
+    const windowWidth = useDefineWindowWidth();
+    const { movies: moviesList, useHandleClickShowMore: handleClickShowMore } = useSizeMoviesList(windowWidth, props.handleSearchMovies);
 
-    const handleClickShowMore = () => {
-        setIsButtonShow(false);
-        setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 3000);
-    };
+    function defineStatusSaved(movie) {
+        return props.savedMovies.some((card) => {
+            if (card.movieId === movie.id) {
+                movie._id = card._id;
+                return true;
+            } else {
+                return false;
+            }
+        });
+    }
 
     return (
         <>
             <section className="elements" aria-label="Фильмы.">
 
-                {isLoading ? <Preloader /> : props.movies.map((card, key) => (
-                    <MoviesCard
-                        key={key}
-                        card={card}
-                        buttonClassName={card.isLiked && (props.buttonName === 'like') ? `button-${props.buttonName} button-${props.buttonName}_active` : `button-${props.buttonName}`}
-                        buttonName={props.buttonName}
-                        buttonTitle={props.buttonTitle}
-                    />
-                ))}
-
+                {props.isLoading
+                    ? <Preloader />
+                    : (
+                        (props.movies.length === 0)
+                            ? (<p className="elements__span">{props.messageError}</p>)
+                            : (pathname === "/movies"
+                                ? (props.movies.slice(0, moviesList).map((card) =>
+                                (
+                                    <MoviesCard
+                                        key={card.id}
+                                        card={card}
+                                        handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
+                                        handleDeleteMovie={props.handleDeleteMovie}
+                                        defineStatusSaved={defineStatusSaved(card)}
+                                    />
+                                )
+                                ))
+                                : (
+                                    props.movies.map((card) =>
+                                    (
+                                        <MoviesCard
+                                            key={card._id}
+                                            card={card}
+                                            handleClickButtonSavedMovie={props.handleClickButtonSavedMovie}
+                                            handleDeleteMovie={props.handleDeleteMovie}
+                                            defineStatusSaved={defineStatusSaved(card)}
+                                        />
+                                    )
+                                    ))
+                            ))}
 
             </section>
-            {isButtonShow && (<Button
-                buttonClassName="button-more"
-                buttonName="more"
-                buttonTitle="Ещё"
-                onClick={handleClickShowMore} />)}
+            {(pathname === "/movies" && props.movies.length > moviesList)
+                && (<Button
+                    buttonClassName="button-more"
+                    buttonName="more"
+                    buttonTitle="Ещё"
+                    onClick={handleClickShowMore} />)
+
+            }
         </>
     );
 }

@@ -3,3 +3,15 @@
     font-size: 10px;
     margin-top: -10px;
 }
+
+.form__error-edit {
+    margin-top: 5px;
+    text-align: right;
+}
+
+.form__error-search {
+    display: flex;
+    width: 100%;
+    position: relative;
+    margin: 50px auto 0;    
+}
